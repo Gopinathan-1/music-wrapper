@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .aurora-blur {
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#ffdad6",
+                    "outline": "#869585",
+                    "surface-container": "#201f1f",
+                    "on-secondary-fixed-variant": "#004f54",
+                    "background": "#131313",
+                    "inverse-surface": "#e5e2e1",
+                    "on-primary-fixed": "#002108",
+                    "on-secondary-container": "#00686f",
+                    "surface-bright": "#3a3939",
+                    "error-container": "#93000a",
+                    "secondary": "#d3fbff",
+                    "on-tertiary-container": "#5d0080",
+                    "outline-variant": "#3d4a3d",
+                    "on-secondary-fixed": "#002022",
+                    "tertiary-container": "#d879ff",
+                    "on-surface-variant": "#bccbb9",
+                    "primary-container": "#1db954",
+                    "inverse-on-surface": "#313030",
+                    "tertiary-fixed": "#f8d8ff",
+                    "on-primary": "#003914",
+                    "inverse-primary": "#006e2d",
+                    "on-tertiary": "#520071",
+                    "surface": "#131313",
+                    "on-background": "#e5e2e1",
+                    "surface-container-highest": "#353534",
+                    "on-surface": "#e5e2e1",
+                    "secondary-container": "#00eefc",
+                    "primary": "#53e076",
+                    "surface-tint": "#53e076",
+                    "error": "#ffb4ab",
+                    "secondary-fixed": "#7df4ff",
+                    "tertiary-fixed-dim": "#ecb2ff",
+                    "on-tertiary-fixed-variant": "#74009f",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-error": "#690005",
+                    "on-secondary": "#00363a",
+                    "tertiary": "#ecb2ff",
+                    "on-tertiary-fixed": "#320047",
+                    "surface-variant": "#353534",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary-fixed-variant": "#005320",
+                    "secondary-fixed-dim": "#00dbe9",
+                    "on-primary-container": "#004118",
+                    "primary-fixed": "#72fe8f",
+                    "surface-dim": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "primary-fixed-dim": "#53e076"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "48px",
+                    "element-gap": "12px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "display-xl": ["Space Grotesk"],
+                    "label-caps": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Global Background Elements -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary aurora-blur rounded-full"></div>
+<div class="absolute bottom-[-5%] right-[-5%] w-[40%] h-[40%] bg-tertiary aurora-blur rounded-full"></div>
+<div class="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-secondary-container aurora-blur rounded-full opacity-20"></div>
+</div>
+<!-- TopAppBar Component -->
+<header class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-container-margin py-4 w-full z-50 docked full-width top-0 sticky">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:text-secondary-fixed transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="relative z-10 min-h-screen pb-40">
+<!-- Main Title -->
+<section class="px-container-margin pt-10 text-center">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Export Your Soul</h1>
+<p class="text-on-surface-variant font-body-md">Choose your visual identity and share it with the world.</p>
+</section>
+<!-- Vertical Card Carousel -->
+<section class="mt-12 overflow-x-auto hide-scrollbar snap-x snap-mandatory flex gap-6 px-[10%] md:px-[30%] pb-8">
+<!-- Card 1: Archetype -->
+<div class="snap-center flex-shrink-0 w-full aspect-[9/16] max-w-[340px] relative rounded-[32px] overflow-hidden border border-white/20 shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-highest via-surface-container to-primary/20"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" data-alt="A cinematic, high-contrast portrait of a digital entity shrouded in emerald green light and floating musical notes. The atmosphere is mysterious and sophisticated, utilizing a dark vaporwave aesthetic with sharp neon outlines. Soft atmospheric smoke swirls around the subject, creating a sense of depth and kinetic energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJBI6EqNYAaauwx3OL3If2Ndeux0EFhTAyRd1NGIEl55v5rVdOY7vYrfhN7qre2peDR4pJ1TQbJa-jiKREAozZiO8hHYPfhViDqK6mlcS0nPfDpbmrnWT-FSgrRYLT06XAMinkp8NSg9JP4QLqPYYwT42neWb8LiO9MqCqMjsvAb_EnZKlZZormFny4wSNsIdn0tIP9sDOrOs0Ujvng4FsBGyjcxRK4mHyYD6SrMSYd7kQITvg35UucRTRB5Z9xiloTti58Zfapyg"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<span class="material-symbols-outlined text-primary" data-icon="biotech">biotech</span>
+</div>
+<div class="space-y-4">
+<div class="font-label-caps text-label-caps text-primary opacity-80">YOUR ARCHETYPE</div>
+<h2 class="font-display-xl text-headline-lg text-on-surface leading-none uppercase">The Neon Prophet</h2>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+<p class="font-body-md text-on-surface-variant leading-tight">Driven by synth-wave pulses and atmospheric dark-pop. Your data is 98% kinetic.</p>
+</div>
+<div class="flex justify-between items-end">
+<div class="p-2 bg-white rounded-lg">
+<img class="w-10 h-10 grayscale invert" data-alt="A minimalist QR code generated on a white background with high contrast, designed for quick scanning. The style is clean and functional, fitting into a high-end digital interface layout. It represents a personalized link to a user profile in a futuristic music analysis application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgTm5iHCdjjQCJMCfpfrtMjb5OKDL0nQsT-RMhSzGpdNMeOCQJ86SGPJTWw2GkeTbFS5gUpGMi-ZVp70zQQsp16n1soZv5UHVkXQ46wj_CY8o9n_qUVCZl8V1umz_hn_DvbZDQRDmiSNUFvJsfUxl6hhY7UlXybpRvZX0HdYDysp95uNRZd6bbKeDn854Qn0rm-ST_aAC11Zth3a7tJdolA8cYPuKEpBV-WtkPKGmeJBTRu4OQXHV2H9ddM0FAjPKChciGcrACLmM"/>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">SCAN TO LISTEN</div>
+<div class="text-[10px] text-outline-variant">echodna.app/neon-prophet</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: DNA -->
+<div class="snap-center flex-shrink-0 w-full aspect-[9/16] max-w-[340px] relative rounded-[32px] overflow-hidden border border-white/20 shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-bl from-tertiary/30 via-surface-container to-background"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen" data-alt="Intricate digital DNA helixes rendered in glowing neon violet and electric blue. The background is a deep, vast obsidian space filled with subtle floating bokeh particles. The lighting is cinematic, highlighting the translucent quality of the strands, creating a sophisticated vaporwave-futurism look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxZfXQdHvALew9SZPtpjxnzzptVhwFAf8Sl4m1JSJXMqiEmxG8fLbEFYRyjHPankm0wCpfSnqSE2AIDt-pV5CdUh0ftkVzUiEWCpg-YqLQ9d_ITrovsMdoc4HZPFq1-Oe1CcFFuOuYE1XUPOLnd3rWhoxA7Z_EIEFDulWkufnnaoZA1zlIaZmkCVXb3R9ku_Kibm4SpvZaRDJNBdRROuOAC4-juhy-Cc8NAx1XPtCJdu9JNdAhGhE0f0MJ3QDIXL4__GONyNiXEr4"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="font-display-xl text-headline-md text-tertiary tracking-tighter">EchoDNA</div>
+<span class="material-symbols-outlined text-tertiary" data-icon="dna">genetics</span>
+</div>
+<div class="space-y-6">
+<div class="font-label-caps text-label-caps text-tertiary opacity-80">SONIC COMPOSITION</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1 font-label-caps"><span>MELANCHOLY</span><span>72%</span></div>
+<div class="h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[72%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1 font-label-caps"><span>EUPHORIA</span><span>45%</span></div>
+<div class="h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[45%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1 font-label-caps"><span>AGGRESSION</span><span>12%</span></div>
+<div class="h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="p-2 bg-white rounded-lg">
+<img class="w-10 h-10 grayscale invert" data-alt="A professional QR code with sharp black modules against a white background, optimized for mobile device cameras. The presentation is minimalist and integrates seamlessly into a premium dark-mode interface design for a data-driven music application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1iMcAe9vvqexV70WJKe65y0sCeRIUV7GVyApFauHeQhfxJlgNh9Xlg9qAqER8j8f63jV1c-6FA5UUbd-4rpcZ7DPg2hTos5eI2dS7bAm6Y6kJSkNMU78RYZfwRpGs4_vVVdKTCcUee63ZNTM54lGhh9CgBFN6FxXBY_MwSRvAU3bSYagvTfHmvWWnk-Wrybkk-6vxt6Sc7TnD_rP8wb77QRyvLmhDpG2RcTGSrRU1npq-PnplmY7Pn0Uf-HZ8M5wCegDm7dd5joM"/>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">VIEW ANALYSIS</div>
+<div class="text-[10px] text-outline-variant">dna.echodna.app/v829</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Alter Ego -->
+<div class="snap-center flex-shrink-0 w-full aspect-[9/16] max-w-[340px] relative rounded-[32px] overflow-hidden border border-white/20 shadow-2xl group">
+<div class="absolute inset-0 bg-background"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,238,252,0.3),transparent)]"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="font-display-xl text-headline-md text-secondary-container tracking-tighter">EchoDNA</div>
+<span class="material-symbols-outlined text-secondary-container" data-icon="psychology">psychology</span>
+</div>
+<div class="flex-grow flex flex-col items-center justify-center text-center py-10">
+<div class="relative mb-8">
+<div class="absolute inset-0 bg-secondary-container blur-2xl opacity-20 animate-pulse"></div>
+<img class="w-32 h-32 rounded-full object-cover border-2 border-secondary-container p-1" data-alt="A stylized digital avatar of a young woman, partially obscured by glitch art effects and glowing cyan circuitry lines. The portrait is set against a deep black background, emphasizing the luminescent quality of the digital enhancements. The mood is futuristic and cybernetic, following a high-end data-kinetic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWt5cD1FJ4uH27STcSSyqg6-xygEyIkQZxZxmkH39IwnDGE6XVXkKaewHRizG9P1o91AR_aWtIKd7sR3X4kW7ICbL-f-G-S65gcaHP4TreRTZKZ1h-qBbg6mKUpjl0MJHJMhgfmdd6vls9gNmi1AMnYI0HPql6ruJV5N97Si4-MHVJvaPDgFAoCvYY3PdxO_H_b7A6YSlU3wEyYXkixXC8mxT_q2lLLv2F32rHnNcHz_nV43JzD-Nm4o0RuOT70iIQotskzCWTYsY"/>
+</div>
+<div class="font-label-caps text-label-caps text-secondary-container mb-2">THE ALTER EGO</div>
+<h3 class="font-display-xl text-headline-lg text-on-surface">VAPOR GHOST</h3>
+<p class="font-body-md text-on-surface-variant max-w-[200px] mt-2">You belong in the midnight frequencies of 1984.</p>
+</div>
+<div class="flex justify-between items-end border-t border-white/10 pt-6">
+<div class="p-2 bg-white rounded-lg">
+<img class="w-10 h-10 grayscale invert" data-alt="A high-contrast QR code rendered on a solid white square, designed for maximum legibility. The aesthetic is clean and modern, meant to serve as a functional design element within a sophisticated dark-mode music profile page." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9qKCtoJ2InH0yWcpxQ3J2BgpnAQ-X0b5qJ7g7Ypfb1zZh7X71JZ340rQ8QubkOzaYWQslO9bB4sUmRjuYFr3zkDDsf4GH0PN6W8-OQJPzqiV4yW0SUnw4C49bpL1DtWwaKrtdeYOOeciGB7dFyobN7LR6k11Jds699rqFHWa4dTWB_rLDH_YNAIJBiCcumtH0IBD_8UAlUMPl2n-y45NlTBcuj_JpE15P6Sq36O-LI7vjzAQEqQxpLcGGfA8a-0PSC0XtHc377qM"/>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">MEET THE EGO</div>
+<div class="text-[10px] text-outline-variant">ego.echodna.app/ghost</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Dots -->
+<div class="flex justify-center gap-2 mt-4">
+<div class="w-8 h-1 bg-primary rounded-full"></div>
+<div class="w-2 h-1 bg-white/20 rounded-full"></div>
+<div class="w-2 h-1 bg-white/20 rounded-full"></div>
+</div>
+<!-- Theme Selection -->
+<section class="mt-12 px-container-margin">
+<h4 class="font-label-caps text-label-caps text-outline mb-4">SELECT THEME</h4>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar">
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border-2 border-primary overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-black"></div>
+<div class="absolute inset-0 flex items-center justify-center"><span class="material-symbols-outlined text-white" data-icon="check">check</span></div>
+</button>
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border border-white/10 overflow-hidden relative grayscale opacity-60">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary/40 to-black"></div>
+</button>
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border border-white/10 overflow-hidden relative grayscale opacity-60">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary-container/40 to-black"></div>
+</button>
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border border-white/10 overflow-hidden relative grayscale opacity-60">
+<div class="absolute inset-0 bg-white/10"></div>
+<div class="absolute inset-0 flex items-center justify-center"><span class="material-symbols-outlined text-white/40" data-icon="add">add</span></div>
+</button>
+</div>
+</section>
+<!-- CTA Buttons -->
+<section class="mt-12 px-container-margin grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 bg-surface-container-high text-on-surface py-5 rounded-full font-label-caps text-label-caps hover:bg-surface-bright transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                DOWNLOAD
+            </button>
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary py-5 rounded-full font-label-caps text-label-caps shadow-[0_0_20px_rgba(83,224,118,0.3)] hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="ios_share">ios_share</span>
+                INSTAGRAM
+            </button>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-background dark:bg-background border-t border-outline-variant/30 full-width py-12 flex flex-col items-center gap-6 px-container-margin text-center">
+<div class="font-display-xl text-primary">EchoDNA</div>
+<div class="flex gap-6">
+<a class="text-outline hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-outline hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Spotify API</a>
+<a class="text-outline hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Terms</a>
+</div>
+<p class="text-outline font-body-md text-body-md opacity-50">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+</footer>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-6 left-0 right-0 mx-auto z-50 flex justify-around items-center p-2 bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home_max">home_max</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-caps text-label-caps mt-1">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps mt-1">Alter Ego</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)]" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span class="font-label-caps text-label-caps mt-1">Share</span>
+</a>
+</nav>
+</body></html>

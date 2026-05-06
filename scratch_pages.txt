@@ -1,0 +1,1058 @@
+--- ui/echodna/spotify_connect/code.html ---
+<!-- Background Elements -->
+<div class="fixed inset-0 aurora-gradient z-0"></div>
+<!-- Subtle Visualizer Background -->
+<div class="fixed bottom-0 left-0 right-0 h-64 flex items-end justify-center gap-1 opacity-20 z-0 px-4">
+<div class="equalizer-bar" style="height: 40%"></div>
+<div class="equalizer-bar" style="height: 60%"></div>
+<div class="equalizer-bar" style="height: 30%"></div>
+<div class="equalizer-bar" style="height: 80%"></div>
+<div class="equalizer-bar" style="height: 50%"></div>
+<div class="equalizer-bar" style="height: 90%"></div>
+<div class="equalizer-bar" style="height: 40%"></div>
+<div class="equalizer-bar" style="height: 70%"></div>
+<div class="equalizer-bar" style="height: 20%"></div>
+<div class="equalizer-bar" style="height: 55%"></div>
+<div class="equalizer-bar" style="height: 85%"></div>
+<div class="equalizer-bar" style="height: 35%"></div>
+<div class="equalizer-bar" style="height: 65%"></div>
+</div>
+<!-- Main Content Shell (No Nav for Transactional Flow) -->
+<main class="relative z-10 w-full max-w-lg px-container-margin flex flex-col items-center">
+<!-- Header / Identity -->
+<div class="mb-12 text-center">
+<h1 class="font-display-xl text-headline-lg text-primary tracking-tighter mb-2">EchoDNA</h1>
+<p class="font-label-caps text-on-surface-variant tracking-widest">GENETIC MUSIC ANALYSIS</p>
+</div>
+<!-- Glassmorphism Login Card -->
+<div class="glass-card w-full p-10 rounded-[32px] flex flex-col items-center shadow-2xl relative overflow-hidden">
+<!-- Decorative Accent -->
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<div class="mb-8 p-4 bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'FILL' 1;">
+                    biotech
+                </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4 text-center">Unlock Your Identity</h2>
+<p class="font-body-md text-on-surface-variant text-center mb-10 max-w-[280px]">
+                We only analyze your listening habits. Never your personal data.
+            </p>
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-primary-fixed transition-all duration-300 py-5 rounded-full flex items-center justify-center gap-3 group shadow-[0_0_30px_rgba(83,224,118,0.2)] active:scale-[0.98]">
+<span class="material-symbols-outlined text-on-primary text-[24px]">
+                    brand_family
+                </span>
+<span class="font-headline-md text-on-primary text-body-lg font-bold">Connect with Spotify</span>
+</button>
+<!-- Trust Indicators -->
+<div class="mt-10 grid grid-cols-2 gap-4 w-full border-t border-white/10 pt-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[18px]">
+                            shield_lock
+                        </span>
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">SECURE API</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[18px]">
+                            visibility_off
+                        </span>
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">PRIVACY FIRST</span>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-8 flex flex-col items-center gap-4">
+<div class="flex gap-6">
+<a class="font-label-caps text-[11px] text-outline hover:text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="font-label-caps text-[11px] text-outline hover:text-primary transition-colors" href="#">DATA ETHICS</a>
+</div>
+<p class="font-body-md text-[12px] text-outline/50 italic">
+                Authorized Spotify Developer Partner
+            </p>
+</div>
+</main>
+<!-- Background Image Asset (Abstract Aura) -->
+<div class="fixed inset-0 -z-10 opacity-30 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-resolution digital background featuring a flowing aurora of neon greens and soft purples against a deep obsidian black abyss. The lighting is ethereal and atmospheric, with soft-focus light leaks and micro-particles floating in the void. The visual style is premium vaporwave-futurism, creating a sense of deep digital space and advanced kinetic energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkenReqMZfCBHjg0ScrIxPZjMNq9nJgfuwcp0bqTyQYxydPdwlNEK_0aiuQbYSBzNxl0V1CiJMp9ni3GpA9Q_yw6HzL8sOuxYutEYBZhZotDAiArlqghFHp_CmjiYd3t0vT2qtSJFb0JSdBbk6_CuvuJf_gp0jN8cQZPNzZtmKH1viRlg58GFcX7a6J0DXi62lJiuFStvilPLe8fQzrOoFKvDNd5q5wRfEXaScqkl3Vu_x-ht9PSON7BvRbQEkcTPzq5H7tQ-qQsc"/>
+</div>
+
+--- ui/echodna/analyzing_your_sonic_dna/code.html ---
+<!-- Global Aurora Background Layer -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary aurora-blur rounded-full animate-pulse-glow"></div>
+<div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-tertiary aurora-blur rounded-full animate-pulse-glow" style="animation-delay: -2s;"></div>
+<div class="absolute -bottom-[10%] left-[20%] w-[60%] h-[50%] bg-secondary-fixed-dim aurora-blur rounded-full animate-pulse-glow" style="animation-delay: -1s;"></div>
+</div>
+<!-- Top Navigation Anchor -->
+<nav class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl text-primary dark:text-primary border-b border-white/10 flex justify-between items-center px-container-margin py-4 w-full z-50 fixed top-0 sticky">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary scale-95 active:duration-100 cursor-pointer">account_circle</span>
+</div>
+</nav>
+<!-- Main Cinematic Canvas -->
+<main class="relative z-10 min-h-[calc(100vh-80px)] flex flex-col items-center justify-center px-container-margin py-section-gap">
+<!-- AI Core Visualizer Section -->
+<div class="relative w-full max-w-2xl aspect-square flex items-center justify-center mb-element-gap">
+<!-- Central Processing Orb -->
+<div class="absolute w-64 h-64 rounded-full border-2 border-primary/30 flex items-center justify-center">
+<div class="w-48 h-48 rounded-full border border-secondary/50 animate-[spin_10s_linear_infinite] flex items-center justify-center">
+<div class="w-32 h-32 rounded-full bg-gradient-to-tr from-primary via-secondary-fixed-dim to-tertiary-container opacity-80 blur-[2px] animate-pulse"></div>
+</div>
+<!-- Neural Particles -->
+<div class="absolute inset-0">
+<div class="absolute top-0 left-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_#53e076]"></div>
+<div class="absolute bottom-12 right-12 w-3 h-3 bg-tertiary rounded-full shadow-[0_0_15px_#ecb2ff]"></div>
+<div class="absolute top-1/4 left-10 w-1.5 h-1.5 bg-secondary rounded-full shadow-[0_0_15px_#d3fbff]"></div>
+</div>
+</div>
+<!-- Orbiting Genre Bubbles (Asymmetric Layout) -->
+<div class="absolute top-20 left-10 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-primary/20">
+<span class="w-2 h-2 bg-primary rounded-full animate-ping"></span> SYNTHWAVE
+            </div>
+<div class="absolute bottom-24 right-4 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-tertiary/20">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-ping"></span> HYPERPOP
+            </div>
+<div class="absolute top-1/2 right-12 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-secondary/20">
+<span class="w-2 h-2 bg-secondary rounded-full animate-ping"></span> POST-PUNK
+            </div>
+<!-- Waveform Animation Container -->
+<div class="absolute bottom-0 w-full flex items-end justify-center gap-1 h-32 opacity-40">
+<div class="w-1 bg-primary h-[20%] animate-[bounce_1.2s_infinite]"></div>
+<div class="w-1 bg-primary h-[50%] animate-[bounce_1.5s_infinite]"></div>
+<div class="w-1 bg-primary h-[80%] animate-[bounce_1.1s_infinite]"></div>
+<div class="w-1 bg-secondary h-[40%] animate-[bounce_1.8s_infinite]"></div>
+<div class="w-1 bg-tertiary h-[90%] animate-[bounce_1.4s_infinite]"></div>
+<div class="w-1 bg-primary h-[60%] animate-[bounce_1.6s_infinite]"></div>
+<div class="w-1 bg-primary h-[30%] animate-[bounce_1.3s_infinite]"></div>
+</div>
+</div>
+<!-- Sequential Status Feed -->
+<div class="w-full max-w-md space-y-4">
+<div class="text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">Analyzing...</h2>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden mb-6">
+<div class="h-full bg-primary w-3/5 shadow-[0_0_10px_#53e076]"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined font-variation-settings-fill">check_circle</span>
+<span class="font-body-md text-on-surface">Scanning your sonic identity...</span>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined font-variation-settings-fill">check_circle</span>
+<span class="font-body-md text-on-surface">Analyzing emotional patterns...</span>
+</div>
+<div class="flex items-center gap-4 text-primary animate-pulse">
+<span class="material-symbols-outlined">radio_button_checked</span>
+<span class="font-body-md text-primary font-bold">Building your genre DNA...</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant/40">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<span class="font-body-md">Detecting your alter ego...</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant/40">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<span class="font-body-md">Generating your personality profile...</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<div class="fixed bottom-6 left-0 right-0 mx-auto z-50 flex justify-around items-center p-2 bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] rounded-full w-[90%] max-w-md">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="home_max">home_max</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)]">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-caps text-label-caps">Analysis</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps">Alter Ego</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span class="font-label-caps text-label-caps">Share</span>
+</button>
+</div>
+<!-- Hidden Footer Context -->
+<footer class="flex flex-col items-center gap-6 px-container-margin full-width py-12 border-t border-outline-variant/30 bg-background dark:bg-background mt-section-gap">
+<div class="font-display-xl text-primary">EchoDNA</div>
+<div class="flex gap-8">
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Spotify API</a>
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Terms</a>
+</div>
+<p class="font-body-md text-outline text-center opacity-60">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+</footer>
+<!-- Decorative Image Assets -->
+<div class="hidden">
+<img data-alt="A cinematic, high-energy close-up of a digital human avatar composed of shimmering neon DNA strands and musical notes. The lighting is dominated by toxic greens and vibrant purples, reflecting off a polished dark floor. The aesthetic is vaporwave-futurism with a focus on high-fidelity data visualization and complex neural network patterns. The mood is mysterious, advanced, and deeply personalized for a modern digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM0E6-LvZBb3akm2nTzqv3M12e3euuSNJv4mp0nF4bKmJMH9wVXxzf6AxpQJH2Chr54DIfcVrNUMwLzaJxY5YWkdesmyTQS1BM2gTlF3OCJ70djG4A3sVyREi928sB6X1Hc0DnMJQNEY5UI6wof6f5oAI-aUApcL69DkL8drqthh1cK7TJ-cJAVPF1HDitlrnYXh7WycHxp-OMwGs11x7qtT9sJ5yPQXDiX2VB0KJSGLcsLWZ_mNXVKXD701DPMioBaWSCEamdeEk"/>
+</div>
+
+--- ui/echodna/your_genre_dna/code.html ---
+<!-- Background Aurora -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary aurora-blur rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-secondary aurora-blur rounded-full"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-tertiary-fixed-dim aurora-blur rounded-full opacity-20"></div>
+</div>
+<!-- Top Navigation Shell -->
+<header class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl text-primary dark:text-primary font-headline-md text-headline-md docked full-width top-0 sticky border-b border-white/10 flat no shadows flex justify-between items-center px-container-margin py-4 w-full z-50">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8 text-label-caps font-label-caps">
+<a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Home</a>
+<a class="text-primary font-bold hover:text-secondary-fixed transition-colors" href="#">Analysis</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Alter Ego</a>
+<a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">Share</a>
+</nav>
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<main class="relative z-10 px-container-margin py-section-gap max-w-7xl mx-auto">
+<!-- Hero Analysis Section -->
+<div class="flex flex-col items-center text-center mb-16">
+<span class="px-4 py-1 rounded-full bg-primary/20 text-primary font-label-caps text-label-caps mb-4 border border-primary/30">GENOME SEQUENCING COMPLETE</span>
+<h1 class="font-display-xl text-display-xl tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Your Genre DNA</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">We've dissected your acoustic preferences. Your sonic profile is a rare hybrid of cinematic depth and rhythmic unpredictability.</p>
+</div>
+<!-- Interactive Visualization Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Donut Visualization -->
+<div class="lg:col-span-7 glass-card rounded-3xl p-8 relative overflow-hidden flex flex-col items-center justify-center min-h-[500px]">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="A striking digital installation art piece featuring glowing, generative music data points suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft neon green lighting that creates a dark-mode cyberpunk aesthetic. The artwork relies on a sophisticated palette of deep blacks and vibrant greens. The mood is serene yet technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj7H8wrZ82xGixMDhtyyN9m-nsUOInyQ__oc1U2Lu4OBKw0scPjCJ0MnRmBjPrcfj7nHvrUy40yUyjtRGgWOYjYU0Y5zfYZbJiiQnov3FaKQsre8TeD_gyEA03HXdduAktSNCLkOG0t-caIAi1J23Q1NHpLfEpySSeffGIAiS9zrXE28u7vXahCoT2xZjB8SYpaEXC-DISBdVnHjTyTK0p1Jg2kS7-5TH6HviRWXaABolBYuJV4V-EH1wNF9MwrGkhRDPC7NFZYV4"/>
+</div>
+<!-- 3D-Look Donut Chart -->
+<div class="relative w-80 h-80 rounded-full flex items-center justify-center">
+<!-- Outer Ring -->
+<div class="absolute inset-0 rounded-full donut-gradient p-12">
+<div class="w-full h-full rounded-full bg-background shadow-inner flex flex-center items-center justify-center relative">
+<div class="text-center">
+<span class="font-display-xl text-headline-lg text-primary block leading-none">88%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Cohesion</span>
+</div>
+</div>
+</div>
+<!-- Floating Bubbles (Decorative) -->
+<div class="absolute -top-4 left-0 glass-card px-4 py-2 rounded-full border-primary/40 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#53e076]"></div>
+<span class="font-label-caps text-label-caps">Indie Melancholy</span>
+</div>
+<div class="absolute top-1/4 -right-12 glass-card px-4 py-2 rounded-full border-secondary-container/40 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary-container shadow-[0_0_8px_#00eefc]"></div>
+<span class="font-label-caps text-label-caps">Chaotic Energy</span>
+</div>
+<div class="absolute bottom-4 -left-8 glass-card px-4 py-2 rounded-full border-tertiary/40 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#ecb2ff]"></div>
+<span class="font-label-caps text-label-caps">Vaporwave</span>
+</div>
+</div>
+<!-- AI Commentary Overlay -->
+<div class="mt-12 glass-card p-6 rounded-2xl border-primary/20 w-full">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="psychology">psychology</span>
+<div>
+<h4 class="font-headline-md text-headline-md mb-1 text-primary">AI Insights</h4>
+<p class="font-body-md text-on-surface-variant italic">"Your DNA profile indicates a high affinity for rhythmic complexity and minor-key emotional resonance. You tend to favor textures that evoke a sense of 'digital nostalgia' combined with hyper-modern percussion."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Stats Bento -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Genre Breakdown -->
+<div class="glass-card rounded-3xl p-6 flex-1">
+<h3 class="font-headline-md text-headline-md mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-icon="biotech">biotech</span>
+                        Sequence Data
+                    </h3>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface">Indie Melancholy</span>
+<span class="font-display-xl text-headline-md text-primary">37%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[37%] shadow-[0_0_15px_rgba(83,224,118,0.5)]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface">Chaotic Energy</span>
+<span class="font-display-xl text-headline-md text-secondary-container">18%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[18%] shadow-[0_0_15px_rgba(0,238,252,0.5)]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface">Art-Pop Fusion</span>
+<span class="font-display-xl text-headline-md text-tertiary">15%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[15%] shadow-[0_0_15px_rgba(236,178,255,0.5)]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface">Cyber-Synth</span>
+<span class="font-display-xl text-headline-md text-outline">12%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-outline w-[12%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- DNA Chips (Genres/Traits) -->
+<div class="glass-card rounded-3xl p-6">
+<h3 class="font-label-caps text-label-caps mb-4 text-on-surface-variant uppercase tracking-widest">Active Chromosomes</h3>
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-caps text-label-caps">Minor Key Highs</span>
+<span class="px-4 py-2 rounded-full bg-secondary-container/10 text-secondary-container border border-secondary-container/20 font-label-caps text-label-caps">808 Distortion</span>
+<span class="px-4 py-2 rounded-full bg-tertiary/10 text-tertiary border border-tertiary/20 font-label-caps text-label-caps">Lyrical Complexity</span>
+<span class="px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 font-label-caps text-label-caps">BPM Fluctuations</span>
+<span class="px-4 py-2 rounded-full bg-outline-variant/30 text-on-surface-variant border border-outline-variant font-label-caps text-label-caps">Glitch Aesthetics</span>
+</div>
+</div>
+<!-- Share Action -->
+<button class="w-full py-4 rounded-full bg-primary text-on-primary font-label-caps text-label-caps flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(83,224,118,0.4)] hover:scale-[1.02] transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+                    EXPORT TO INSTAGRAM STORY
+                </button>
+</div>
+</div>
+<!-- Sonic Wave Visualizer Section -->
+<div class="mt-section-gap glass-card rounded-[40px] p-12 overflow-hidden relative">
+<div class="flex flex-col md:flex-row items-end justify-between gap-8 mb-12">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg mb-4">Acoustic Resonance</h2>
+<p class="font-body-md text-on-surface-variant">Your top genres create a specific frequency pattern. This waveform represents the average harmonic density of your daily rotation.</p>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary border border-white/5">
+<span class="material-symbols-outlined" data-icon="equalizer">equalizer</span>
+</div>
+</div>
+</div>
+<!-- Custom Waveform Mock -->
+<div class="h-48 flex items-end gap-1 px-4">
+<div class="flex-1 bg-primary/20 rounded-t-full h-[20%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-full h-[45%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-full h-[80%] shadow-[0_0_15px_#53e076]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-full h-[60%]"></div>
+<div class="flex-1 bg-primary/30 rounded-t-full h-[30%]"></div>
+<div class="flex-1 bg-secondary-container/40 rounded-t-full h-[50%]"></div>
+<div class="flex-1 bg-secondary-container/60 rounded-t-full h-[90%] shadow-[0_0_15px_#00eefc]"></div>
+<div class="flex-1 bg-secondary-container/80 rounded-t-full h-[100%] shadow-[0_0_25px_#00eefc]"></div>
+<div class="flex-1 bg-secondary-container/60 rounded-t-full h-[75%]"></div>
+<div class="flex-1 bg-tertiary/40 rounded-t-full h-[55%]"></div>
+<div class="flex-1 bg-tertiary/60 rounded-t-full h-[85%] shadow-[0_0_15px_#ecb2ff]"></div>
+<div class="flex-1 bg-tertiary/30 rounded-t-full h-[40%]"></div>
+<div class="flex-1 bg-primary/20 rounded-t-full h-[20%]"></div>
+<div class="flex-1 bg-primary/50 rounded-t-full h-[65%]"></div>
+<div class="flex-1 bg-primary/80 rounded-t-full h-[95%] shadow-[0_0_15px_#53e076]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-full h-[50%]"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile) -->
+<nav class="md:hidden bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] z-50 flex justify-around items-center p-2 font-label-caps text-label-caps">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home_max">home_max</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span>Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span>Alter Ego</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span>Share</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background border-t border-outline-variant/30 full-width py-12 flex flex-col items-center gap-6 px-container-margin mt-section-gap">
+<div class="font-display-xl text-primary text-headline-md tracking-tighter">EchoDNA</div>
+<div class="flex gap-8 text-outline font-body-md">
+<a class="hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="hover:text-tertiary transition-colors" href="#">Spotify API</a>
+<a class="hover:text-tertiary transition-colors" href="#">Terms</a>
+</div>
+<p class="text-outline/60 text-sm font-body-md">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+</footer>
+
+--- ui/echodna/your_mood_spectrum/code.html ---
+<!-- Background Aurora Layers -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+<div class="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] rounded-full bg-primary aurora-blur"></div>
+<div class="absolute top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-tertiary aurora-blur"></div>
+<div class="absolute -bottom-[10%] left-[20%] w-[70%] h-[50%] rounded-full bg-secondary aurora-blur"></div>
+</div>
+<!-- TopAppBar -->
+<header class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl font-headline-md text-headline-md docked full-width top-0 sticky border-b border-white/10 z-50">
+<div class="flex justify-between items-center px-container-margin py-4 w-full">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-4">
+<button class="hover:text-secondary-fixed transition-colors text-primary active:scale-95 active:duration-100">
+<span class="material-symbols-outlined text-[32px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-container-margin py-element-gap md:py-section-gap flex flex-col gap-section-gap mb-32">
+<!-- Header & AI Commentary -->
+<section class="flex flex-col gap-6">
+<h1 class="font-display-xl text-display-xl text-primary leading-none">Mood Spectrum</h1>
+<div class="glass-card p-6 rounded-xl border-l-4 border-l-secondary">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<p class="font-body-lg italic text-secondary-fixed">
+                        "Your playlists oscillate between emotional vulnerability and euphoric escapism."
+                    </p>
+</div>
+</div>
+</section>
+<!-- Visualization Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Radar Chart Card -->
+<div class="glass-card p-8 rounded-[2rem] flex flex-col items-center justify-center relative overflow-hidden aspect-square">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent"></div>
+</div>
+<div class="relative w-full h-full flex items-center justify-center">
+<!-- SVG Radar Mockup -->
+<svg class="w-full h-full drop-shadow-[0_0_15px_rgba(83,224,118,0.3)]" viewbox="0 0 200 200">
+<!-- Hexagon Webs -->
+<polygon class="text-outline-variant" fill="none" points="100,20 170,60 170,140 100,180 30,140 30,60" stroke="currentColor" stroke-width="0.5"></polygon>
+<polygon class="text-outline-variant" fill="none" points="100,60 135,80 135,120 100,140 65,120 65,80" stroke="currentColor" stroke-width="0.5"></polygon>
+<line class="text-outline-variant" stroke="currentColor" stroke-width="0.5" x1="100" x2="100" y1="20" y2="180"></line>
+<line class="text-outline-variant" stroke="currentColor" stroke-width="0.5" x1="30" x2="170" y1="60" y2="140"></line>
+<line class="text-outline-variant" stroke="currentColor" stroke-width="0.5" x1="30" x2="170" y1="140" y2="60"></line>
+<!-- Data Shape -->
+<polygon class="radar-line" fill="rgba(83,224,118,0.3)" points="100,40 160,80 150,130 100,160 50,110 40,70" stroke="#53e076" stroke-width="2"></polygon>
+<!-- Labels -->
+<text class="fill-on-surface-variant font-label-caps text-[8px]" text-anchor="middle" x="100" y="15">ENERGY</text>
+<text class="fill-on-surface-variant font-label-caps text-[8px]" text-anchor="start" x="185" y="60">DANCE</text>
+<text class="fill-on-surface-variant font-label-caps text-[8px]" text-anchor="start" x="185" y="145">VALENCE</text>
+<text class="fill-on-surface-variant font-label-caps text-[8px]" text-anchor="middle" x="100" y="195">ACOUSTIC</text>
+<text class="fill-on-surface-variant font-label-caps text-[8px]" text-anchor="end" x="15" y="145">INTENSITY</text>
+<text class="fill-on-surface-variant font-label-caps text-[8px]" text-anchor="end" x="15" y="60">FOCUS</text>
+</svg>
+</div>
+</div>
+<!-- Heatmap Visual Card -->
+<div class="glass-card p-8 rounded-[2rem] flex flex-col justify-between overflow-hidden aspect-square">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-tertiary">AUDIO-REACTIVE HEATMAP</span>
+<span class="material-symbols-outlined text-tertiary animate-pulse">graphic_eq</span>
+</div>
+<!-- Generative Heatmap Simulation -->
+<div class="flex-1 my-6 relative rounded-xl overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 flex flex-wrap gap-1 p-1">
+<!-- Simulated heat map grid -->
+<div class="w-[18%] h-[18%] bg-primary/80 blur-sm rounded-full animate-pulse"></div>
+<div class="w-[18%] h-[18%] bg-tertiary/40 blur-md rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-secondary/60 blur-sm rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-primary/20 blur-lg rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-tertiary/90 blur-sm rounded-full animate-bounce"></div>
+<div class="w-[18%] h-[18%] bg-secondary/30 blur-md rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-primary/50 blur-sm rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-tertiary/10 blur-xl rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-secondary/80 blur-sm rounded-full"></div>
+<div class="w-[18%] h-[18%] bg-primary/70 blur-md rounded-full"></div>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-end gap-1 h-12">
+<div class="flex-1 bg-primary h-[40%] rounded-full opacity-60"></div>
+<div class="flex-1 bg-primary h-[80%] rounded-full opacity-80"></div>
+<div class="flex-1 bg-secondary h-[100%] rounded-full"></div>
+<div class="flex-1 bg-tertiary h-[60%] rounded-full"></div>
+<div class="flex-1 bg-primary h-[30%] rounded-full opacity-40"></div>
+<div class="flex-1 bg-secondary h-[70%] rounded-full"></div>
+<div class="flex-1 bg-tertiary h-[90%] rounded-full"></div>
+</div>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant">Real-time spectral analysis of your peak energy hours (10PM - 2AM).</p>
+</div>
+</div>
+<!-- Detail Breakdown Section -->
+<section class="flex flex-col gap-element-gap">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Dominant Attributes</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="glass-card p-4 rounded-xl flex flex-col gap-2 border-t-2 border-primary">
+<span class="font-label-caps text-primary">ENERGY</span>
+<span class="text-3xl font-display-xl">88%</span>
+</div>
+<div class="glass-card p-4 rounded-xl flex flex-col gap-2 border-t-2 border-secondary">
+<span class="font-label-caps text-secondary">VALENCE</span>
+<span class="text-3xl font-display-xl">42%</span>
+</div>
+<div class="glass-card p-4 rounded-xl flex flex-col gap-2 border-t-2 border-tertiary">
+<span class="font-label-caps text-tertiary">FOCUS</span>
+<span class="text-3xl font-display-xl">65%</span>
+</div>
+<div class="glass-card p-4 rounded-xl flex flex-col gap-2 border-t-2 border-primary">
+<span class="font-label-caps text-primary">DANCE</span>
+<span class="text-3xl font-display-xl">91%</span>
+</div>
+</div>
+</section>
+<!-- Shareability / DNA Chips -->
+<section class="flex flex-col items-center gap-6 text-center py-8">
+<h3 class="font-headline-md text-headline-md text-outline">Sonic Fingerprint</h3>
+<div class="flex flex-wrap justify-center gap-3">
+<span class="px-6 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full font-label-caps">Hyper-Pop</span>
+<span class="px-6 py-2 bg-secondary/20 text-secondary border border-secondary/30 rounded-full font-label-caps">Phonk</span>
+<span class="px-6 py-2 bg-tertiary/20 text-tertiary border border-tertiary/30 rounded-full font-label-caps">Ambient Drift</span>
+<span class="px-6 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full font-label-caps">Neo-Soul</span>
+</div>
+<button class="mt-4 px-10 py-4 bg-primary text-on-primary rounded-full font-display-xl text-xl shadow-[0_0_30px_rgba(83,224,118,0.4)] hover:scale-105 active:scale-95 transition-all">
+                EXPORT SPECTRUM
+            </button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background full-width py-12 border-t border-outline-variant/30">
+<div class="flex flex-col items-center gap-6 px-container-margin">
+<div class="font-display-xl text-primary">EchoDNA</div>
+<p class="font-body-md text-body-md text-outline">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+<div class="flex gap-8">
+<a class="text-outline hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="text-outline hover:text-tertiary transition-colors" href="#">Spotify API</a>
+<a class="text-outline hover:text-tertiary transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-0 right-0 mx-auto z-50 flex justify-around items-center p-2 bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] w-[90%] max-w-md rounded-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">home_max</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)] active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">biotech</span>
+<span class="font-label-caps text-label-caps mt-1">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-caps text-label-caps mt-1">Alter Ego</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined">ios_share</span>
+<span class="font-label-caps text-label-caps mt-1">Share</span>
+</a>
+</nav>
+<!-- Visualizer Background Element (DNA Helix abstract) -->
+<div class="fixed bottom-0 right-0 w-full h-32 pointer-events-none opacity-20 -z-10">
+<svg class="w-full h-full" preserveaspectratio="none">
+<path d="M0 64 Q 100 0, 200 64 T 400 64 T 600 64 T 800 64 T 1000 64" fill="none" stroke="#53e076" stroke-width="2"></path>
+<path d="M0 64 Q 100 128, 200 64 T 400 64 T 600 64 T 800 64 T 1000 64" fill="none" stroke="#ecb2ff" stroke-width="2"></path>
+</svg>
+</div>
+
+--- ui/echodna/archetype_midnight_dreamer/code.html ---
+<header class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-container-margin py-4 w-full z-50 sticky top-0">
+<h1 class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</h1>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="relative px-container-margin py-section-gap max-w-4xl mx-auto flex flex-col items-center">
+<!-- Aurora Background Blobs -->
+<div class="absolute -top-20 -left-20 w-96 h-96 rounded-full dna-gradient aurora-blur -z-10"></div>
+<div class="absolute top-1/2 -right-20 w-80 h-80 rounded-full bg-secondary-container aurora-blur -z-10"></div>
+<div class="w-full glass-card rounded-[2rem] p-8 md:p-12 relative overflow-hidden shadow-2xl">
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<!-- Vibe Imagery (DNA Visualizer) -->
+<div class="relative w-full md:w-1/2 aspect-[9/16] md:aspect-square group">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+<img alt="Nocturnal Cityscape" class="w-full h-full object-cover rounded-3xl" data-alt="A cinematic, dreamlike cityscape at midnight, viewed through a rain-streaked window. The city lights are blurred into soft, glowing orbs of neon teal and electric purple, creating a high-contrast vaporwave aesthetic. Wisps of ethereal fog drift between skyscrapers under a deep violet sky. The mood is introspective, calm, and futuristic, mirroring the feeling of nocturnal digital exploration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrTAtwIOlDkElWv81JTz1rZg-1GPYBfrhd1PUMK---p5lX47si67L1-dCi-CfX_lRh3cPkFnKkQrc_5Lq7tb6o1zXngUfc2UrmjqNyZ6tlCCeOfGrHrk-hbWg0jnhET3vsC7zbPx1XQSb-leD1KEflJrJo3QmTej2HSp61JMu8QO3QK2JCApX0umbIItUBoaxS1eplhoENLZY7GkZ7fTgkHYS99sSoABMelG36elqXdQX6xI8MljDM4Flr0tuVs2APmbrRQcA1yy0"/>
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<!-- Audio Aura Component -->
+<div class="w-48 h-48 rounded-full border-[12px] border-primary/20 flex items-center justify-center animate-pulse">
+<div class="w-36 h-36 rounded-full border-[8px] border-secondary-fixed-dim/40 flex items-center justify-center">
+<div class="w-24 h-24 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-primary scale-[2]" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Personality Content -->
+<div class="w-full md:w-1/2 flex flex-col gap-6">
+<div class="space-y-2">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em]">LISTENING ARCHETYPE</span>
+<h2 class="font-display-xl text-display-xl text-glow leading-none">Midnight Dreamer</h2>
+</div>
+<p class="font-body-lg text-on-surface-variant leading-relaxed">
+                        You gravitate towards <span class="text-secondary-fixed-dim font-bold">ambient textures</span> and <span class="text-tertiary-fixed-dim font-bold">lo-fi beats</span> that define your nocturnal introspection. Your DNA hums with the frequency of quiet streets and neon horizons.
+                    </p>
+<!-- Artists Row -->
+<div class="space-y-4">
+<span class="font-label-caps text-label-caps text-outline">TOP RESONATORS</span>
+<div class="flex flex-wrap gap-3">
+<div class="bg-primary/10 border border-primary/20 rounded-full px-5 py-2 flex items-center gap-2">
+<span class="font-display-xl text-body-md text-primary">01</span>
+<span class="font-body-md text-on-surface">Aphex Twin</span>
+</div>
+<div class="bg-secondary-fixed/10 border border-secondary-fixed/20 rounded-full px-5 py-2 flex items-center gap-2">
+<span class="font-display-xl text-body-md text-secondary-fixed-dim">02</span>
+<span class="font-body-md text-on-surface">Bonobo</span>
+</div>
+<div class="bg-tertiary/10 border border-tertiary/20 rounded-full px-5 py-2 flex items-center gap-2">
+<span class="font-display-xl text-body-md text-tertiary">03</span>
+<span class="font-body-md text-on-surface">Four Tet</span>
+</div>
+</div>
+</div>
+<!-- AI Vibe Tag -->
+<div class="mt-4 flex gap-2">
+<div class="bg-surface-container-highest/50 px-3 py-1.5 rounded-lg flex items-center gap-2 border border-white/5">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">VIBE: CYBER-SOLITUDE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Share CTA (Floating Button Style) -->
+<div class="mt-12 flex flex-col md:flex-row gap-4 items-center justify-center border-t border-white/10 pt-8">
+<button class="bg-primary text-on-primary font-display-xl text-body-md px-10 py-4 rounded-full shadow-[0_0_20px_rgba(83,224,118,0.4)] flex items-center gap-3 scale-95 active:duration-100 transition-all hover:scale-100">
+<span class="material-symbols-outlined">ios_share</span>
+                    SHARE YOUR GENOME
+                </button>
+<button class="bg-white/5 hover:bg-white/10 text-on-surface font-display-xl text-body-md px-10 py-4 rounded-full border border-white/10 transition-colors">
+                    FULL ANALYSIS
+                </button>
+</div>
+</div>
+</main>
+<footer class="bg-background dark:bg-background full-width py-12 flex flex-col items-center gap-6 px-container-margin border-t border-outline-variant/30">
+<h3 class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</h3>
+<p class="font-body-md text-body-md text-outline">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+<div class="flex gap-8">
+<a class="font-body-md text-body-md text-outline hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-outline hover:text-tertiary transition-colors" href="#">Spotify API</a>
+<a class="font-body-md text-body-md text-outline hover:text-tertiary transition-colors" href="#">Terms</a>
+</div>
+</footer>
+<nav class="bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] fixed bottom-6 left-0 right-0 mx-auto z-50 flex justify-around items-center p-2 w-[90%] max-w-md rounded-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">home_max</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">biotech</span>
+<span class="font-label-caps text-label-caps mt-1">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-caps text-label-caps mt-1">Alter Ego</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">ios_share</span>
+<span class="font-label-caps text-label-caps mt-1">Share</span>
+</a>
+</nav>
+
+--- ui/echodna/your_music_alter_ego_neon_ghost/code.html ---
+<!-- TopAppBar -->
+<header class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl text-primary dark:text-primary docked full-width top-0 sticky border-b border-white/10 flex justify-between items-center px-container-margin py-4 w-full z-50">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary hover:text-secondary-fixed transition-colors scale-95 active:duration-100 cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-container-margin py-10 pb-32">
+<!-- Persona Hero Section (Cyberpunk Character Profile) -->
+<section class="relative mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<!-- Left Content: Identity Labels -->
+<div class="md:col-span-4 z-10 space-y-6 order-2 md:order-1">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] block">ID:// ARCHETYPE</span>
+<h1 class="font-display-xl text-display-xl text-primary text-glow leading-none">Neon Ghost</h1>
+</div>
+<div class="glass-card rounded-xl p-6 border-l-4 border-l-secondary-container">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="location_on">location_on</span>
+<span class="font-label-caps text-label-caps text-secondary-fixed">TOKYO // 02:00 AM</span>
+</div>
+<p class="font-body-md text-on-surface-variant leading-relaxed italic">"Navigating the rainy streets of Shibuya through a haze of lo-fi synthesizers and glitchy heartbeats."</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/20 text-primary px-4 py-1.5 rounded-full font-label-caps text-label-caps border border-primary/30">BEAUTIFUL CHAOS</span>
+<span class="bg-tertiary/20 text-tertiary px-4 py-1.5 rounded-full font-label-caps text-label-caps border border-tertiary/30">RAINY WINTER</span>
+<span class="bg-secondary/20 text-secondary px-4 py-1.5 rounded-full font-label-caps text-label-caps border border-secondary/30">GLITCH CORE</span>
+</div>
+</div>
+<!-- Center Portrait: High Impact Visual -->
+<div class="md:col-span-8 relative order-1 md:order-2">
+<div class="relative group">
+<!-- Holographic Frame -->
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary via-secondary-container to-tertiary rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+<div class="relative glass-card rounded-2xl overflow-hidden aspect-[4/5] md:aspect-[16/10]">
+<img alt="Persona portrait" class="w-full h-full object-cover mix-blend-lighten opacity-80" data-alt="A cinematic, high-fashion portrait of a cyberpunk character with glowing neon accents on their face and tech-wear. The background is a blurred Tokyo street at 2AM during a rainy winter night, filled with blue and magenta lens flares. The lighting is dramatic and high-contrast, with droplets of water reflecting city lights. The overall aesthetic is futuristic, data-driven, and moody, using the EchoDNA signature green and purple palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8xQvJci4F6BBC3NMgQEubEmQWmIvp0dpwFxb5bBQDjuMLYrU32hiIlizqcX7mM-pp1XLgdY-M3DEkKL5OA5-0_QnY5oxEejdyYjdCj8NY_FcT5PK8-4NkfTLNwGcNjemwZ3av27n_0pz6rdnYJjaDqHpChY8krem0WHLW-CKIzX73moTxjgs93oVl2yyiiydXAN-meSGddMiJjdzna75r-Y68aZF6cxHblqOtIxC37Wu9qoMXss-qOkbKOI_CfPvy7_aBSJoU804"/>
+<!-- Floating Metadata Overlays -->
+<div class="absolute top-6 right-6 text-right font-label-caps text-label-caps text-primary/80 space-y-1">
+<div>SYNC_RATE: 98.4%</div>
+<div>DIVERGENCE: LOW</div>
+<div class="hologram-line mt-2"></div>
+</div>
+<div class="absolute bottom-6 left-6 flex items-end gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-primary p-0.5">
+<img alt="User Avatar" class="w-full h-full rounded-full object-cover" data-alt="A close-up professional profile photo of a person with neutral lighting and a minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBPMNp19KT0-IiuNagJ8OCb6CQwW5usX7LfhglrDkOi_gMofFGiDXX0fwDfVDqMtt0GhOYzSjHq5SMey8NBpTtfjHZWvueP7uaiq2J-7iKgX7TOeyOx9hNOhhBS8vOBwR-ymdSnrvAY-WiHCTArc4Q-o-oTC5V2Lfr6oTwloai_zUh8sVGIPIG63O0kzTAicq2GNk_7IDI00ppP_r4eqeEyo21anERYc6i6d0IoQYzY-HODuLiGlW_PDNhdnR_fKmtO_35VlfFOvM"/>
+</div>
+<div class="font-label-caps text-label-caps text-white">
+<span class="block opacity-60">USER_LINKED</span>
+<span class="text-body-lg">@KINETIC_DATA</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DNA Analysis Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-section-gap">
+<div class="md:col-span-2 glass-card p-8 rounded-2xl flex flex-col justify-between border-t border-white/20">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Acoustic Fingerprint</h2>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+<span>SYNTHETIC RESONANCE</span>
+<span>82%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[82%] shadow-[0_0_10px_#00eefc]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+<span>MELANCHOLIC VELOCITY</span>
+<span>64%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[64%] shadow-[0_0_10px_#ecb2ff]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/30 flex items-center justify-between">
+<p class="font-body-md text-on-surface-variant max-w-xs">Your frequency matches the vibrations of a city that never sleeps, but always dreams.</p>
+<span class="material-symbols-outlined text-display-xl text-primary/20" data-icon="biotech">biotech</span>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl relative overflow-hidden flex flex-col justify-center items-center text-center">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-transparent"></div>
+<span class="material-symbols-outlined text-6xl text-primary mb-4" data-icon="psychology" data-weight="fill">psychology</span>
+<h3 class="font-headline-md text-headline-md mb-2">The Oracle</h3>
+<p class="font-body-md text-on-surface-variant">Your alter ego processes music as "Emotional Architecture" rather than simple sound.</p>
+</div>
+</section>
+<!-- Cinematic Soundtrack -->
+<section class="space-y-gutter">
+<div class="flex justify-between items-end">
+<div>
+<span class="font-label-caps text-label-caps text-tertiary tracking-[0.2em]">AUDIO RECONNAISSANCE</span>
+<h2 class="font-headline-lg text-headline-lg">Your Cinematic Soundtrack</h2>
+</div>
+<button class="bg-primary hover:scale-105 transition-transform text-on-primary font-label-caps text-label-caps px-6 py-3 rounded-full shadow-[0_0_20px_rgba(83,224,118,0.4)] flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="play_arrow" data-weight="fill">play_arrow</span>
+                    PLAY ALL
+                </button>
+</div>
+<div class="grid grid-cols-1 gap-unit">
+<!-- Track 1 -->
+<div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:bg-white/10 transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Album Art" data-alt="Cyberpunk album cover art with neon green geometry and dark charcoal textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVdZ62bBHhu9GO4XXDX64DtvfOZ-MHikneg4Lhmz_5jCi-YevXCO2MnArl5AQOSOAXSVXmxZXyfID_LGoR_YzVTpYXEmJODWGoRN3kuPIbTLOHcftZ2RS0ZkQ2LpJ6ooI02nH2mnWUoRjafLvNBKfoxgLH0-MY6s2YMqVQS0IsrfK5jL0obUQzZhM_nDtHJ2ri5_XqoRGLEt0-5eFOl-Xep2DwEnqUk9vnPNyag99XZmEBEA_05Ako2-iy5f-hVGOh-Z2kIaGYN8I"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline-md text-body-lg text-on-surface">Midnight Glitch</h4>
+<p class="font-body-md text-on-surface-variant">Synthetic Dreams</p>
+</div>
+</div>
+<div class="flex items-center gap-8 pr-4">
+<div class="hidden md:flex gap-1 items-end h-8">
+<div class="w-1 bg-primary h-4"></div>
+<div class="w-1 bg-primary h-6"></div>
+<div class="w-1 bg-primary h-3"></div>
+<div class="w-1 bg-primary h-5"></div>
+</div>
+<span class="font-label-caps text-label-caps text-primary">MATCH: 99%</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+<!-- Track 2 -->
+<div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:bg-white/10 transition-colors">
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Album Art" data-alt="Abstract musical visualizer with floating particles and waves in shades of electric blue and violet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOiKncmqPxywYFNt2EcNcpVY1IAcbUb0jRo7_4vMUI-xW01AEzWi5XXTGBfX2qm6j-zffoh4GMu4zK7lLIvK6CkWRThM9bGMWFSBNQgESjG5dfD7dlVOU_cZxhnOupzl6g8mntdC2nW8-gR1LUtAFROPm0e2STxumvfeCx21G0LVxWGLhTMAzSxbNtfqi3nZJWcFjCekfEzsBMKmUj5luvYREUni2CrwWgwRvLK98-xLKL3BGpovlPthBymUgZm7xc5btIOV4KuJA"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline-md text-body-lg text-on-surface">Static Rain</h4>
+<p class="font-body-md text-on-surface-variant">The Echo Chamber</p>
+</div>
+</div>
+<div class="flex items-center gap-8 pr-4">
+<div class="hidden md:flex gap-1 items-end h-8">
+<div class="w-1 bg-secondary h-2"></div>
+<div class="w-1 bg-secondary h-4"></div>
+<div class="w-1 bg-secondary h-5"></div>
+<div class="w-1 bg-secondary h-3"></div>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">MATCH: 94%</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background full-width py-12 border-t border-outline-variant/30 flex flex-col items-center gap-6 px-container-margin">
+<div class="font-display-xl text-primary">EchoDNA</div>
+<div class="flex gap-8">
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Spotify API</a>
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Terms</a>
+</div>
+<p class="font-body-md text-outline">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+</footer>
+<!-- BottomNavBar (Semantic Shell) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] z-50 flex justify-around items-center p-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home_max">home_max</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-caps text-label-caps mt-1">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps mt-1">Alter Ego</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span class="font-label-caps text-label-caps mt-1">Share</span>
+</a>
+</nav>
+
+--- ui/echodna/share_your_sonic_identity/code.html ---
+<!-- Global Background Elements -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary aurora-blur rounded-full"></div>
+<div class="absolute bottom-[-5%] right-[-5%] w-[40%] h-[40%] bg-tertiary aurora-blur rounded-full"></div>
+<div class="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-secondary-container aurora-blur rounded-full opacity-20"></div>
+</div>
+<!-- TopAppBar Component -->
+<header class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-container-margin py-4 w-full z-50 docked full-width top-0 sticky">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:text-secondary-fixed transition-colors scale-95 active:duration-100">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="relative z-10 min-h-screen pb-40">
+<!-- Main Title -->
+<section class="px-container-margin pt-10 text-center">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Export Your Soul</h1>
+<p class="text-on-surface-variant font-body-md">Choose your visual identity and share it with the world.</p>
+</section>
+<!-- Vertical Card Carousel -->
+<section class="mt-12 overflow-x-auto hide-scrollbar snap-x snap-mandatory flex gap-6 px-[10%] md:px-[30%] pb-8">
+<!-- Card 1: Archetype -->
+<div class="snap-center flex-shrink-0 w-full aspect-[9/16] max-w-[340px] relative rounded-[32px] overflow-hidden border border-white/20 shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container-highest via-surface-container to-primary/20"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay" data-alt="A cinematic, high-contrast portrait of a digital entity shrouded in emerald green light and floating musical notes. The atmosphere is mysterious and sophisticated, utilizing a dark vaporwave aesthetic with sharp neon outlines. Soft atmospheric smoke swirls around the subject, creating a sense of depth and kinetic energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJBI6EqNYAaauwx3OL3If2Ndeux0EFhTAyRd1NGIEl55v5rVdOY7vYrfhN7qre2peDR4pJ1TQbJa-jiKREAozZiO8hHYPfhViDqK6mlcS0nPfDpbmrnWT-FSgrRYLT06XAMinkp8NSg9JP4QLqPYYwT42neWb8LiO9MqCqMjsvAb_EnZKlZZormFny4wSNsIdn0tIP9sDOrOs0Ujvng4FsBGyjcxRK4mHyYD6SrMSYd7kQITvg35UucRTRB5Z9xiloTti58Zfapyg"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<span class="material-symbols-outlined text-primary" data-icon="biotech">biotech</span>
+</div>
+<div class="space-y-4">
+<div class="font-label-caps text-label-caps text-primary opacity-80">YOUR ARCHETYPE</div>
+<h2 class="font-display-xl text-headline-lg text-on-surface leading-none uppercase">The Neon Prophet</h2>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+<p class="font-body-md text-on-surface-variant leading-tight">Driven by synth-wave pulses and atmospheric dark-pop. Your data is 98% kinetic.</p>
+</div>
+<div class="flex justify-between items-end">
+<div class="p-2 bg-white rounded-lg">
+<img class="w-10 h-10 grayscale invert" data-alt="A minimalist QR code generated on a white background with high contrast, designed for quick scanning. The style is clean and functional, fitting into a high-end digital interface layout. It represents a personalized link to a user profile in a futuristic music analysis application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgTm5iHCdjjQCJMCfpfrtMjb5OKDL0nQsT-RMhSzGpdNMeOCQJ86SGPJTWw2GkeTbFS5gUpGMi-ZVp70zQQsp16n1soZv5UHVkXQ46wj_CY8o9n_qUVCZl8V1umz_hn_DvbZDQRDmiSNUFvJsfUxl6hhY7UlXybpRvZX0HdYDysp95uNRZd6bbKeDn854Qn0rm-ST_aAC11Zth3a7tJdolA8cYPuKEpBV-WtkPKGmeJBTRu4OQXHV2H9ddM0FAjPKChciGcrACLmM"/>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">SCAN TO LISTEN</div>
+<div class="text-[10px] text-outline-variant">echodna.app/neon-prophet</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: DNA -->
+<div class="snap-center flex-shrink-0 w-full aspect-[9/16] max-w-[340px] relative rounded-[32px] overflow-hidden border border-white/20 shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-bl from-tertiary/30 via-surface-container to-background"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen" data-alt="Intricate digital DNA helixes rendered in glowing neon violet and electric blue. The background is a deep, vast obsidian space filled with subtle floating bokeh particles. The lighting is cinematic, highlighting the translucent quality of the strands, creating a sophisticated vaporwave-futurism look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxZfXQdHvALew9SZPtpjxnzzptVhwFAf8Sl4m1JSJXMqiEmxG8fLbEFYRyjHPankm0wCpfSnqSE2AIDt-pV5CdUh0ftkVzUiEWCpg-YqLQ9d_ITrovsMdoc4HZPFq1-Oe1CcFFuOuYE1XUPOLnd3rWhoxA7Z_EIEFDulWkufnnaoZA1zlIaZmkCVXb3R9ku_Kibm4SpvZaRDJNBdRROuOAC4-juhy-Cc8NAx1XPtCJdu9JNdAhGhE0f0MJ3QDIXL4__GONyNiXEr4"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="font-display-xl text-headline-md text-tertiary tracking-tighter">EchoDNA</div>
+<span class="material-symbols-outlined text-tertiary" data-icon="dna">genetics</span>
+</div>
+<div class="space-y-6">
+<div class="font-label-caps text-label-caps text-tertiary opacity-80">SONIC COMPOSITION</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1 font-label-caps"><span>MELANCHOLY</span><span>72%</span></div>
+<div class="h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[72%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1 font-label-caps"><span>EUPHORIA</span><span>45%</span></div>
+<div class="h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[45%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1 font-label-caps"><span>AGGRESSION</span><span>12%</span></div>
+<div class="h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="p-2 bg-white rounded-lg">
+<img class="w-10 h-10 grayscale invert" data-alt="A professional QR code with sharp black modules against a white background, optimized for mobile device cameras. The presentation is minimalist and integrates seamlessly into a premium dark-mode interface design for a data-driven music application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1iMcAe9vvqexV70WJKe65y0sCeRIUV7GVyApFauHeQhfxJlgNh9Xlg9qAqER8j8f63jV1c-6FA5UUbd-4rpcZ7DPg2hTos5eI2dS7bAm6Y6kJSkNMU78RYZfwRpGs4_vVVdKTCcUee63ZNTM54lGhh9CgBFN6FxXBY_MwSRvAU3bSYagvTfHmvWWnk-Wrybkk-6vxt6Sc7TnD_rP8wb77QRyvLmhDpG2RcTGSrRU1npq-PnplmY7Pn0Uf-HZ8M5wCegDm7dd5joM"/>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">VIEW ANALYSIS</div>
+<div class="text-[10px] text-outline-variant">dna.echodna.app/v829</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Alter Ego -->
+<div class="snap-center flex-shrink-0 w-full aspect-[9/16] max-w-[340px] relative rounded-[32px] overflow-hidden border border-white/20 shadow-2xl group">
+<div class="absolute inset-0 bg-background"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,238,252,0.3),transparent)]"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="font-display-xl text-headline-md text-secondary-container tracking-tighter">EchoDNA</div>
+<span class="material-symbols-outlined text-secondary-container" data-icon="psychology">psychology</span>
+</div>
+<div class="flex-grow flex flex-col items-center justify-center text-center py-10">
+<div class="relative mb-8">
+<div class="absolute inset-0 bg-secondary-container blur-2xl opacity-20 animate-pulse"></div>
+<img class="w-32 h-32 rounded-full object-cover border-2 border-secondary-container p-1" data-alt="A stylized digital avatar of a young woman, partially obscured by glitch art effects and glowing cyan circuitry lines. The portrait is set against a deep black background, emphasizing the luminescent quality of the digital enhancements. The mood is futuristic and cybernetic, following a high-end data-kinetic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWt5cD1FJ4uH27STcSSyqg6-xygEyIkQZxZxmkH39IwnDGE6XVXkKaewHRizG9P1o91AR_aWtIKd7sR3X4kW7ICbL-f-G-S65gcaHP4TreRTZKZ1h-qBbg6mKUpjl0MJHJMhgfmdd6vls9gNmi1AMnYI0HPql6ruJV5N97Si4-MHVJvaPDgFAoCvYY3PdxO_H_b7A6YSlU3wEyYXkixXC8mxT_q2lLLv2F32rHnNcHz_nV43JzD-Nm4o0RuOT70iIQotskzCWTYsY"/>
+</div>
+<div class="font-label-caps text-label-caps text-secondary-container mb-2">THE ALTER EGO</div>
+<h3 class="font-display-xl text-headline-lg text-on-surface">VAPOR GHOST</h3>
+<p class="font-body-md text-on-surface-variant max-w-[200px] mt-2">You belong in the midnight frequencies of 1984.</p>
+</div>
+<div class="flex justify-between items-end border-t border-white/10 pt-6">
+<div class="p-2 bg-white rounded-lg">
+<img class="w-10 h-10 grayscale invert" data-alt="A high-contrast QR code rendered on a solid white square, designed for maximum legibility. The aesthetic is clean and modern, meant to serve as a functional design element within a sophisticated dark-mode music profile page." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9qKCtoJ2InH0yWcpxQ3J2BgpnAQ-X0b5qJ7g7Ypfb1zZh7X71JZ340rQ8QubkOzaYWQslO9bB4sUmRjuYFr3zkDDsf4GH0PN6W8-OQJPzqiV4yW0SUnw4C49bpL1DtWwaKrtdeYOOeciGB7dFyobN7LR6k11Jds699rqFHWa4dTWB_rLDH_YNAIJBiCcumtH0IBD_8UAlUMPl2n-y45NlTBcuj_JpE15P6Sq36O-LI7vjzAQEqQxpLcGGfA8a-0PSC0XtHc377qM"/>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-outline">MEET THE EGO</div>
+<div class="text-[10px] text-outline-variant">ego.echodna.app/ghost</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Dots -->
+<div class="flex justify-center gap-2 mt-4">
+<div class="w-8 h-1 bg-primary rounded-full"></div>
+<div class="w-2 h-1 bg-white/20 rounded-full"></div>
+<div class="w-2 h-1 bg-white/20 rounded-full"></div>
+</div>
+<!-- Theme Selection -->
+<section class="mt-12 px-container-margin">
+<h4 class="font-label-caps text-label-caps text-outline mb-4">SELECT THEME</h4>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar">
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border-2 border-primary overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-black"></div>
+<div class="absolute inset-0 flex items-center justify-center"><span class="material-symbols-outlined text-white" data-icon="check">check</span></div>
+</button>
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border border-white/10 overflow-hidden relative grayscale opacity-60">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary/40 to-black"></div>
+</button>
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border border-white/10 overflow-hidden relative grayscale opacity-60">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary-container/40 to-black"></div>
+</button>
+<button class="flex-shrink-0 w-16 h-16 rounded-xl border border-white/10 overflow-hidden relative grayscale opacity-60">
+<div class="absolute inset-0 bg-white/10"></div>
+<div class="absolute inset-0 flex items-center justify-center"><span class="material-symbols-outlined text-white/40" data-icon="add">add</span></div>
+</button>
+</div>
+</section>
+<!-- CTA Buttons -->
+<section class="mt-12 px-container-margin grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 bg-surface-container-high text-on-surface py-5 rounded-full font-label-caps text-label-caps hover:bg-surface-bright transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                DOWNLOAD
+            </button>
+<button class="flex items-center justify-center gap-2 bg-primary text-on-primary py-5 rounded-full font-label-caps text-label-caps shadow-[0_0_20px_rgba(83,224,118,0.3)] hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="ios_share">ios_share</span>
+                INSTAGRAM
+            </button>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-background dark:bg-background border-t border-outline-variant/30 full-width py-12 flex flex-col items-center gap-6 px-container-margin text-center">
+<div class="font-display-xl text-primary">EchoDNA</div>
+<div class="flex gap-6">
+<a class="text-outline hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-outline hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Spotify API</a>
+<a class="text-outline hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Terms</a>
+</div>
+<p class="text-outline font-body-md text-body-md opacity-50">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+</footer>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-6 left-0 right-0 mx-auto z-50 flex justify-around items-center p-2 bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home_max">home_max</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-caps text-label-caps mt-1">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps mt-1">Alter Ego</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)]" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span class="font-label-caps text-label-caps mt-1">Share</span>
+</a>
+</nav>
+
