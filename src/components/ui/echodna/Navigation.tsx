@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { User, Home, Microscope, Brain, Share } from "lucide-react";
+import { User, Home, LayoutGrid, Sparkles, Share } from "lucide-react";
 
 export const TopAppBar = () => {
   return (
@@ -11,11 +11,11 @@ export const TopAppBar = () => {
         <Link href="/" className="font-headline-md text-headline-md text-primary font-bold hover:text-secondary-fixed transition-colors">
           Home
         </Link>
-        <Link href="/analyzing" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
-          Analysis
+        <Link href="/#archetypes" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
+          Archetypes
         </Link>
-        <Link href="/alter-ego" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
-          Alter Ego
+        <Link href="/#join-now" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
+          Join Now
         </Link>
       </div>
       <div className="flex items-center gap-4">
@@ -34,13 +34,13 @@ export const BottomNavBar = () => {
         <Home size={20} />
         <span className="font-label-caps text-[10px] mt-1">Home</span>
       </Link>
-      <Link href="/analyzing" className="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
-        <Microscope size={20} />
-        <span className="font-label-caps text-[10px] mt-1">Analysis</span>
+      <Link href="/#archetypes" className="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+        <LayoutGrid size={20} />
+        <span className="font-label-caps text-[10px] mt-1">Archetypes</span>
       </Link>
-      <Link href="/alter-ego" className="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
-        <Brain size={20} />
-        <span className="font-label-caps text-[10px] mt-1">Alter Ego</span>
+      <Link href="/#join-now" className="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+        <Sparkles size={20} />
+        <span className="font-label-caps text-[10px] mt-1">Join Now</span>
       </Link>
       <Link href="/share" className="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
         <Share size={20} />

@@ -51,7 +51,7 @@ export default function Home() {
         </section>
 
         {/* Personality Archetypes Section */}
-        <section className="py-section-gap px-container-margin max-w-7xl mx-auto">
+        <section id="archetypes" className="py-section-gap px-container-margin max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="font-headline-lg text-headline-lg mb-4">The Archetypes</h2>
             <div className="w-24 h-1 bg-primary mx-auto rounded-full"></div>
@@ -173,7 +173,7 @@ export default function Home() {
         </section>
 
         {/* Built From Your Data CTA */}
-        <section className="py-section-gap px-container-margin">
+        <section id="join-now" className="py-section-gap px-container-margin">
           <GlassCard className="max-w-5xl mx-auto rounded-[40px] p-12 lg:p-20 text-center border-2 border-white/5 relative">
             <div className="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
             <div className="relative z-10">

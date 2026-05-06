@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SmoothScroll } from "@/components/ui/echodna/SmoothScroll";
 
 const satoshi = localFont({
   src: "./fonts/Satoshi-Variable.woff2",
@@ -27,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${satoshi.variable} ${clashDisplay.variable} antialiased`}>
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
