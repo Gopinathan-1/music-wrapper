@@ -1,87 +1,123 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { TopAppBar, BottomNavBar, Footer } from "@/components/ui/echodna/Navigation";
+import { CheckCircle2, Circle } from "lucide-react";
 
 export default function AnalyzingPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push("/results");
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [router]);
+
   return (
     <>
-      {/* Global Aurora Background Layer */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary aurora-blur rounded-full animate-pulse"></div>
-        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-tertiary aurora-blur rounded-full animate-pulse" style={{ animationDelay: '-2s' }}></div>
-        <div className="absolute -bottom-[10%] left-[20%] w-[60%] h-[50%] bg-secondary-fixed-dim aurora-blur rounded-full animate-pulse" style={{ animationDelay: '-1s' }}></div>
-      </div>
-
       <TopAppBar />
 
-      <main className="relative z-10 min-h-[calc(100vh-80px)] flex flex-col items-center justify-center px-container-margin py-section-gap">
-        {/* AI Core Visualizer Section */}
-        <div className="relative w-full max-w-2xl aspect-square flex items-center justify-center mb-12">
-          {/* Central Processing Orb */}
-          <div className="absolute w-64 h-64 rounded-full border-2 border-primary/30 flex items-center justify-center">
-            <div className="w-48 h-48 rounded-full border border-secondary/50 animate-[spin_10s_linear_infinite] flex items-center justify-center">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-primary via-secondary-fixed-dim to-tertiary-container opacity-80 blur-[2px] animate-pulse"></div>
+      <main className="relative w-full h-screen flex flex-col items-center justify-center pt-20 px-container-margin overflow-hidden mb-24">
+        {/* Background Particle Layer */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full blur-[1px] opacity-40"></div>
+          <div className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-secondary-container rounded-full blur-[1px] opacity-30"></div>
+          <div className="absolute bottom-1/4 left-1/2 w-2 h-2 bg-tertiary rounded-full blur-[1px] opacity-40"></div>
+          <div className="absolute top-2/3 left-10 w-1 h-1 bg-white rounded-full blur-[1px] opacity-20"></div>
+        </div>
+
+        {/* Main Scanner Interface */}
+        <div className="relative z-10 w-full max-w-lg flex flex-col items-center gap-12">
+          
+          {/* DNA Core / Circular Scanner */}
+          <div className="relative flex items-center justify-center">
+            {/* Rotating Rings */}
+            <div className="absolute w-80 h-80 border-2 border-primary/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+            <div className="absolute w-72 h-72 border border-secondary-container/40 rounded-full border-dashed animate-[spin_15s_linear_infinite_reverse]"></div>
+            <div className="absolute w-96 h-96 border border-white/5 rounded-full"></div>
+            
+            {/* The "DNA Strand" or AI Core */}
+            <div className="relative w-64 h-64 glass-card rounded-full flex items-center justify-center overflow-hidden shadow-[0_0_80px_rgba(83,224,118,0.2)]">
+              <img className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen animate-pulse" alt="DNA Strand core" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChm0OZAb-G_Gz2hKoW8U8E1OQxy5OSu4p_OzpY4b0B06DiXG_XTdYR1gEeXVnRpEVWY7UUQOfNa7NPB9ppfsWzJVgpBXN8yHIGNXhzpH1ZljJLxZpCBd4TTpLes4xKTWufyD-g17CnzyCkDbR2o9hIE9B2q0yOvpK43s-UNfwhqEsFcT1mkBShOR_KpruFTlACwPgfSGMyCecHomglMq88uUKbl7TE0cw3A0wmh63qkU8G0-FSSu6KHRj7vkSKjdXbjl12aPdxpw4" />
+              
+              <div className="z-20 flex flex-col items-center">
+                <span className="font-display-xl text-primary text-[64px] tracking-tight">84%</span>
+                <span className="font-label-caps text-primary/60 mt-[-8px]">ANALYZING</span>
+              </div>
+              
+              {/* Scan Line Overlay */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-full">
+                <div className="w-full h-[2px] bg-primary/50 shadow-[0_0_15px_#53e076] animate-[bounce_3s_infinite]"></div>
+              </div>
             </div>
-            {/* Neural Particles */}
-            <div className="absolute inset-0">
-              <div className="absolute top-0 left-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_#53e076]"></div>
-              <div className="absolute bottom-12 right-12 w-3 h-3 bg-tertiary rounded-full shadow-[0_0_15px_#ecb2ff]"></div>
-              <div className="absolute top-1/4 left-10 w-1.5 h-1.5 bg-secondary rounded-full shadow-[0_0_15px_#d3fbff]"></div>
+
+            {/* Orbiting Genre Bubbles */}
+            <div className="absolute -top-10 -right-10 glass-card px-4 py-2 rounded-full border border-primary/30 flex items-center gap-2 animate-bounce">
+              <div className="w-2 h-2 bg-primary rounded-full shadow-[0_0_8px_#53e076]"></div>
+              <span className="font-label-caps text-[10px]">HYPERPOP</span>
+            </div>
+            <div className="absolute bottom-10 -left-12 glass-card px-4 py-2 rounded-full border border-tertiary/30 flex items-center gap-2">
+              <div className="w-2 h-2 bg-tertiary rounded-full shadow-[0_0_8px_#ecb2ff]"></div>
+              <span className="font-label-caps text-[10px]">LO-FI JAZZ</span>
+            </div>
+            <div className="absolute top-1/2 -right-24 glass-card px-4 py-2 rounded-full border border-secondary-container/30 flex items-center gap-2">
+              <div className="w-2 h-2 bg-secondary-container rounded-full shadow-[0_0_8px_#00eefc]"></div>
+              <span className="font-label-caps text-[10px]">POST-PUNK</span>
             </div>
           </div>
 
-          {/* Orbiting Genre Bubbles */}
-          <div className="absolute top-20 left-10 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-primary/20">
-            <span className="w-2 h-2 bg-primary rounded-full animate-ping"></span> SYNTHWAVE
-          </div>
-          <div className="absolute bottom-24 right-4 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-tertiary/20">
-            <span className="w-2 h-2 bg-tertiary rounded-full animate-ping"></span> HYPERPOP
-          </div>
-          <div className="absolute top-1/2 right-12 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-secondary/20">
-            <span className="w-2 h-2 bg-secondary rounded-full animate-ping"></span> POST-PUNK
-          </div>
+          {/* Analysis Progress Steps */}
+          <div className="w-full space-y-6">
+            <div className="flex flex-col items-center gap-4 text-center">
+              <h2 className="font-headline-md text-headline-md text-primary tracking-wide">Building your genre DNA...</h2>
+              <div className="w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
+                <div className="h-full bg-primary w-[84%] shadow-[0_0_15px_rgba(83,224,118,0.8)]"></div>
+              </div>
+            </div>
 
-          {/* Waveform Animation Container */}
-          <div className="absolute bottom-0 w-full flex items-end justify-center gap-1 h-32 opacity-40">
-            <div className="w-1 bg-primary h-[20%] animate-[bounce_1.2s_infinite]"></div>
-            <div className="w-1 bg-primary h-[50%] animate-[bounce_1.5s_infinite]"></div>
-            <div className="w-1 bg-primary h-[80%] animate-[bounce_1.1s_infinite]"></div>
-            <div className="w-1 bg-secondary h-[40%] animate-[bounce_1.8s_infinite]"></div>
-            <div className="w-1 bg-tertiary h-[90%] animate-[bounce_1.4s_infinite]"></div>
-            <div className="w-1 bg-primary h-[60%] animate-[bounce_1.6s_infinite]"></div>
-            <div className="w-1 bg-primary h-[30%] animate-[bounce_1.3s_infinite]"></div>
+            {/* Step Indicators */}
+            <div className="grid grid-cols-1 gap-3 max-w-xs mx-auto">
+              <div className="flex items-center gap-3 opacity-100 transition-opacity">
+                <CheckCircle2 size={16} className="text-primary fill-primary/20" />
+                <p className="font-label-caps text-on-surface/80">Scanning your sonic identity...</p>
+              </div>
+              <div className="flex items-center gap-3 opacity-100 transition-opacity">
+                <CheckCircle2 size={16} className="text-primary fill-primary/20" />
+                <p className="font-label-caps text-on-surface/80">Analyzing emotional patterns...</p>
+              </div>
+              <div className="flex items-center gap-3 animate-pulse">
+                <div className="w-4 h-4 rounded-full border-2 border-primary flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                </div>
+                <p className="font-label-caps text-primary">Building your genre DNA...</p>
+              </div>
+              <div className="flex items-center gap-3 opacity-40">
+                <Circle size={16} className="text-outline" />
+                <p className="font-label-caps text-outline">Detecting your alter ego...</p>
+              </div>
+              <div className="flex items-center gap-3 opacity-40">
+                <Circle size={16} className="text-outline" />
+                <p className="font-label-caps text-outline">Generating your personality profile...</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Sequential Status Feed */}
-        <div className="w-full max-w-md space-y-4">
-          <div className="text-center">
-            <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">Analyzing...</h2>
-            <div className="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden mb-6">
-              <div className="h-full bg-primary w-3/5 shadow-[0_0_10px_#53e076]"></div>
-            </div>
-          </div>
+        {/* Audio Reactive Waveform (Static representation) */}
+        <div className="absolute bottom-24 left-0 right-0 flex items-end justify-center gap-1 h-12 opacity-30">
+          {[20, 40, 80, 60, 90, 100, 70, 30, 50, 80, 20].map((h, i) => (
+            <div key={i} className={`w-1 bg-primary rounded-full ${h === 100 ? 'shadow-[0_0_10px_#53e076]' : ''}`} style={{ height: `${h}%` }}></div>
+          ))}
+        </div>
 
-          <div className="space-y-3">
-            <div className="flex items-center gap-4 text-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-primary"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <span className="font-body-md text-on-surface">Scanning your sonic identity...</span>
-            </div>
-            <div className="flex items-center gap-4 text-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-primary"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <span className="font-body-md text-on-surface">Analyzing emotional patterns...</span>
-            </div>
-            <div className="flex items-center gap-4 text-primary animate-pulse">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-primary"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
-              <span className="font-body-md text-primary font-bold">Building your genre DNA...</span>
-            </div>
-            <div className="flex items-center gap-4 text-on-surface-variant/40">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-              <span className="font-body-md">Detecting your alter ego...</span>
-            </div>
-            <div className="flex items-center gap-4 text-on-surface-variant/40">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-              <span className="font-body-md">Generating your personality profile...</span>
-            </div>
-          </div>
+        {/* Artist Image Fragments */}
+        <div className="absolute top-1/4 -left-12 w-32 h-32 rounded-2xl glass-card overflow-hidden -rotate-12 opacity-40">
+          <img className="w-full h-full object-cover grayscale brightness-75" alt="Artist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDboHueVWyw86RLRXVCwdYixhKkvINPvguUa26xzo1d4L-x7Tpb8hgA_2mrav1w-gwmpf5YVAON9zETkr7sUGctIHBlNOX69FHBUcqfWURTb5VE79DEIBefTqCJkXjXqEgcpYdXMZxpfHEMyHUM7CeRIS4bEgZMuyNV3iuRN2-9dSeSwQ1G4dv4OiEGfoW6TxnWZnIoQ2UY23bXHdOmMoDfbx0brpy_q3mrqM7eBUzUpFYNH0mOgelM9Iv5UAL6Qhlhn1rPA_WAuq0" />
+        </div>
+        <div className="absolute bottom-1/4 -right-12 w-40 h-40 rounded-full glass-card overflow-hidden rotate-6 opacity-30">
+          <img className="w-full h-full object-cover" alt="Studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsrMRUyu0F49gokL3gei4mTF9b-HdtqLFQD2-bFOuAEsg2ymo6JNuXigIFvnu_29So7DhTnz91BTYHuwfPJH9ZFIBBfOi--ukUbzrYpjbdFfLVfqnZ0Wi-qgd9RcW_Tg6gNsJoCcO_ZL34jI_S1y5C8nNlT5tCYRKf39lcc69xSTS_XyuZYyp7kgY14VT6g2oqL8M1Uff08c7_MP5cukyvsA-Nh7qYlknwX_yHUMB0EKO18zl7PXHD_26zRczCnjxDCcGZPj6_V-k" />
         </div>
       </main>
 

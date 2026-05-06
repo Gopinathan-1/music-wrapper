@@ -19,7 +19,9 @@ export const TopAppBar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-4">
-        <User className="text-primary cursor-pointer hover:scale-95 transition-transform" />
+        <Link href="/login">
+          <User className="text-primary cursor-pointer hover:scale-95 transition-transform" />
+        </Link>
       </div>
     </header>
   );

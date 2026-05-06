@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { TopAppBar, BottomNavBar, Footer } from "@/components/ui/echodna/Navigation";
 import { Button } from "@/components/ui/echodna/Button";
@@ -44,7 +45,9 @@ export default function Home() {
             <WaveformVisualizer />
           </div>
 
-          <Button variant="primary">ANALYZE MY SPOTIFY</Button>
+          <Link href="/login">
+            <Button variant="primary">ANALYZE MY SPOTIFY</Button>
+          </Link>
         </section>
 
         {/* Personality Archetypes Section */}
@@ -179,7 +182,9 @@ export default function Home() {
                 Securely connect your Spotify account to generate your unique musical identity card.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="primary">ANALYZE NOW</Button>
+                <Link href="/login">
+                  <Button variant="primary">ANALYZE NOW</Button>
+                </Link>
                 <Button variant="secondary">LEARN MORE</Button>
               </div>
               <p className="mt-8 text-outline text-xs font-body-md">We don't store your personal data. Only your vibes.</p>

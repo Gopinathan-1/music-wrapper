@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EchoDNA | Analyzing Your Sonic Identity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "outline": "#869585",
+                        "surface-container": "#201f1f",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "background": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "on-primary-fixed": "#002108",
+                        "on-secondary-container": "#00686f",
+                        "surface-bright": "#3a3939",
+                        "error-container": "#93000a",
+                        "secondary": "#d3fbff",
+                        "on-tertiary-container": "#5d0080",
+                        "outline-variant": "#3d4a3d",
+                        "on-secondary-fixed": "#002022",
+                        "tertiary-container": "#d879ff",
+                        "on-surface-variant": "#bccbb9",
+                        "primary-container": "#1db954",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed": "#f8d8ff",
+                        "on-primary": "#003914",
+                        "inverse-primary": "#006e2d",
+                        "on-tertiary": "#520071",
+                        "surface": "#131313",
+                        "on-background": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#00eefc",
+                        "primary": "#53e076",
+                        "surface-tint": "#53e076",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#7df4ff",
+                        "tertiary-fixed-dim": "#ecb2ff",
+                        "on-tertiary-fixed-variant": "#74009f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error": "#690005",
+                        "on-secondary": "#00363a",
+                        "tertiary": "#ecb2ff",
+                        "on-tertiary-fixed": "#320047",
+                        "surface-variant": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-primary-container": "#004118",
+                        "primary-fixed": "#72fe8f",
+                        "surface-dim": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "primary-fixed-dim": "#53e076"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "48px",
+                        "element-gap": "12px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Space Grotesk"],
+                        "label-caps": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Space Grotesk"],
+                        "headline-lg": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .aurora-blur {
+            filter: blur(100px);
+            opacity: 0.4;
+            mix-blend-mode: screen;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neural-line {
+            background: linear-gradient(90deg, transparent, var(--tw-color-primary), transparent);
+            height: 1px;
+            width: 100%;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden min-h-screen selection:bg-primary selection:text-on-primary">
+<!-- Global Aurora Background Layer -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary aurora-blur rounded-full animate-pulse-glow"></div>
+<div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-tertiary aurora-blur rounded-full animate-pulse-glow" style="animation-delay: -2s;"></div>
+<div class="absolute -bottom-[10%] left-[20%] w-[60%] h-[50%] bg-secondary-fixed-dim aurora-blur rounded-full animate-pulse-glow" style="animation-delay: -1s;"></div>
+</div>
+<!-- Top Navigation Anchor -->
+<nav class="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl text-primary dark:text-primary border-b border-white/10 flex justify-between items-center px-container-margin py-4 w-full z-50 fixed top-0 sticky">
+<div class="font-display-xl text-headline-md text-primary tracking-tighter">EchoDNA</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary scale-95 active:duration-100 cursor-pointer">account_circle</span>
+</div>
+</nav>
+<!-- Main Cinematic Canvas -->
+<main class="relative z-10 min-h-[calc(100vh-80px)] flex flex-col items-center justify-center px-container-margin py-section-gap">
+<!-- AI Core Visualizer Section -->
+<div class="relative w-full max-w-2xl aspect-square flex items-center justify-center mb-element-gap">
+<!-- Central Processing Orb -->
+<div class="absolute w-64 h-64 rounded-full border-2 border-primary/30 flex items-center justify-center">
+<div class="w-48 h-48 rounded-full border border-secondary/50 animate-[spin_10s_linear_infinite] flex items-center justify-center">
+<div class="w-32 h-32 rounded-full bg-gradient-to-tr from-primary via-secondary-fixed-dim to-tertiary-container opacity-80 blur-[2px] animate-pulse"></div>
+</div>
+<!-- Neural Particles -->
+<div class="absolute inset-0">
+<div class="absolute top-0 left-1/2 w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_#53e076]"></div>
+<div class="absolute bottom-12 right-12 w-3 h-3 bg-tertiary rounded-full shadow-[0_0_15px_#ecb2ff]"></div>
+<div class="absolute top-1/4 left-10 w-1.5 h-1.5 bg-secondary rounded-full shadow-[0_0_15px_#d3fbff]"></div>
+</div>
+</div>
+<!-- Orbiting Genre Bubbles (Asymmetric Layout) -->
+<div class="absolute top-20 left-10 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-primary/20">
+<span class="w-2 h-2 bg-primary rounded-full animate-ping"></span> SYNTHWAVE
+            </div>
+<div class="absolute bottom-24 right-4 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-tertiary/20">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-ping"></span> HYPERPOP
+            </div>
+<div class="absolute top-1/2 right-12 glass-card px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2 border border-secondary/20">
+<span class="w-2 h-2 bg-secondary rounded-full animate-ping"></span> POST-PUNK
+            </div>
+<!-- Waveform Animation Container -->
+<div class="absolute bottom-0 w-full flex items-end justify-center gap-1 h-32 opacity-40">
+<div class="w-1 bg-primary h-[20%] animate-[bounce_1.2s_infinite]"></div>
+<div class="w-1 bg-primary h-[50%] animate-[bounce_1.5s_infinite]"></div>
+<div class="w-1 bg-primary h-[80%] animate-[bounce_1.1s_infinite]"></div>
+<div class="w-1 bg-secondary h-[40%] animate-[bounce_1.8s_infinite]"></div>
+<div class="w-1 bg-tertiary h-[90%] animate-[bounce_1.4s_infinite]"></div>
+<div class="w-1 bg-primary h-[60%] animate-[bounce_1.6s_infinite]"></div>
+<div class="w-1 bg-primary h-[30%] animate-[bounce_1.3s_infinite]"></div>
+</div>
+</div>
+<!-- Sequential Status Feed -->
+<div class="w-full max-w-md space-y-4">
+<div class="text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">Analyzing...</h2>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden mb-6">
+<div class="h-full bg-primary w-3/5 shadow-[0_0_10px_#53e076]"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined font-variation-settings-fill">check_circle</span>
+<span class="font-body-md text-on-surface">Scanning your sonic identity...</span>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined font-variation-settings-fill">check_circle</span>
+<span class="font-body-md text-on-surface">Analyzing emotional patterns...</span>
+</div>
+<div class="flex items-center gap-4 text-primary animate-pulse">
+<span class="material-symbols-outlined">radio_button_checked</span>
+<span class="font-body-md text-primary font-bold">Building your genre DNA...</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant/40">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<span class="font-body-md">Detecting your alter ego...</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant/40">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<span class="font-body-md">Generating your personality profile...</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<div class="fixed bottom-6 left-0 right-0 mx-auto z-50 flex justify-around items-center p-2 bg-surface-container-low/20 dark:bg-surface-container-low/20 backdrop-blur-2xl border border-white/20 shadow-[0_0_40px_rgba(83,224,118,0.15)] rounded-full w-[90%] max-w-md">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="home_max">home_max</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 shadow-[0_0_20px_rgba(83,224,118,0.4)]">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-caps text-label-caps">Analysis</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps">Alter Ego</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 px-5 py-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span class="font-label-caps text-label-caps">Share</span>
+</button>
+</div>
+<!-- Hidden Footer Context -->
+<footer class="flex flex-col items-center gap-6 px-container-margin full-width py-12 border-t border-outline-variant/30 bg-background dark:bg-background mt-section-gap">
+<div class="font-display-xl text-primary">EchoDNA</div>
+<div class="flex gap-8">
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Spotify API</a>
+<a class="font-body-md text-outline hover:text-tertiary transition-colors" href="#">Terms</a>
+</div>
+<p class="font-body-md text-outline text-center opacity-60">© 2024 EchoDNA. Powered by Data-Kineticism AI.</p>
+</footer>
+<!-- Decorative Image Assets -->
+<div class="hidden">
+<img data-alt="A cinematic, high-energy close-up of a digital human avatar composed of shimmering neon DNA strands and musical notes. The lighting is dominated by toxic greens and vibrant purples, reflecting off a polished dark floor. The aesthetic is vaporwave-futurism with a focus on high-fidelity data visualization and complex neural network patterns. The mood is mysterious, advanced, and deeply personalized for a modern digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM0E6-LvZBb3akm2nTzqv3M12e3euuSNJv4mp0nF4bKmJMH9wVXxzf6AxpQJH2Chr54DIfcVrNUMwLzaJxY5YWkdesmyTQS1BM2gTlF3OCJ70djG4A3sVyREi928sB6X1Hc0DnMJQNEY5UI6wof6f5oAI-aUApcL69DkL8drqthh1cK7TJ-cJAVPF1HDitlrnYXh7WycHxp-OMwGs11x7qtT9sJ5yPQXDiX2VB0KJSGLcsLWZ_mNXVKXD701DPMioBaWSCEamdeEk"/>
+</div>
+</body></html>
