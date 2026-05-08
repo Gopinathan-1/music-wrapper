@@ -9,9 +9,14 @@ import { useAnalysis } from "@/hooks/useAnalysis";
 
 export default function AnalyzingPage() {
   const router = useRouter();
-  const { loading, results, error } = useAnalysis();
+  const { loading, results, error, username } = useAnalysis();
 
   useEffect(() => {
+    if (!username) {
+      router.push("/login");
+      return;
+    }
+
     if (!loading && results) {
       // Small delay to let the animation breathe
       const timer = setTimeout(() => {
@@ -19,10 +24,11 @@ export default function AnalyzingPage() {
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [loading, results, router]);
+  }, [loading, results, router, username]);
 
   if (error) {
-    // Handle error UI
+    // Handle error UI or redirect back
+    router.push("/login?error=" + encodeURIComponent(error));
   }
 
   return (

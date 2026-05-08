@@ -1,49 +1,53 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { analyzeSpotifyData, AnalysisResults } from "@/lib/spotify/analysis";
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { analyzeLastfmData, AnalysisData } from "@/lib/lastfm/analysis";
 
 interface AnalysisContextType {
   loading: boolean;
-  results: AnalysisResults | null;
+  results: AnalysisData | null;
   error: string | null;
-  refreshAnalysis: () => Promise<void>;
+  username: string | null;
+  startAnalysis: (username: string) => Promise<void>;
+  resetAnalysis: () => void;
 }
 
 const AnalysisContext = createContext<AnalysisContextType | undefined>(undefined);
 
-export function AnalysisProvider({ children }: { children: React.ReactNode }) {
-  const { data: session, status } = useSession();
+export function AnalysisProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<AnalysisResults | null>(null);
+  const [results, setResults] = useState<AnalysisData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
 
-  const refreshAnalysis = async () => {
-    if (status !== "authenticated" || !session?.accessToken) return;
+  const startAnalysis = async (user: string) => {
+    if (!user) return;
     
     setLoading(true);
     setError(null);
+    setUsername(user);
+
     try {
-      const data = await analyzeSpotifyData(session.accessToken as string);
+      // In a real app this might hit a Next.js API route to hide the API key,
+      // but we can just run it client-side since the key is public for Last.fm usually
+      const data = await analyzeLastfmData(user);
       setResults(data);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Analysis failed:", err);
-      setError("Failed to analyze Spotify data.");
+      setError(err.message || "Failed to analyze Last.fm data.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Run automatically on mount if authenticated and no results
-  useEffect(() => {
-    if (status === "authenticated" && !results && !loading && !error) {
-      refreshAnalysis();
-    }
-  }, [status, session, results]);
+  const resetAnalysis = () => {
+    setResults(null);
+    setError(null);
+    setUsername(null);
+  };
 
   return (
-    <AnalysisContext.Provider value={{ loading, results, error, refreshAnalysis }}>
+    <AnalysisContext.Provider value={{ loading, results, error, username, startAnalysis, resetAnalysis }}>
       {children}
     </AnalysisContext.Provider>
   );

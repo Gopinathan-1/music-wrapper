@@ -1,15 +1,28 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { GlassCard } from "@/components/ui/echodna/GlassCard";
 import { Button } from "@/components/ui/echodna/Button";
-import { Disc3, Sparkles, ShieldCheck, ArrowLeft, Headphones } from "lucide-react";
+import { Disc3, Sparkles, ShieldCheck, ArrowLeft, Headphones, AlertTriangle, User } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useAnalysis } from "@/hooks/useAnalysis";
 
 export default function LoginPage() {
-  const handleSpotifyLogin = () => {
-    signIn("spotify", { callbackUrl: "/analyzing" });
+  const [username, setUsername] = useState("");
+  const { startAnalysis, loading, error } = useAnalysis();
+  const router = useRouter();
+
+  const handleLastfmSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!username.trim()) return;
+    
+    // Start the analysis in the background
+    startAnalysis(username.trim());
+    
+    // Redirect to the analyzing loading screen
+    router.push("/analyzing");
   };
 
   return (
@@ -49,22 +62,43 @@ export default function LoginPage() {
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-surface-container-high mb-6 relative"
               >
-                <Disc3 size={32} className="text-primary z-10" />
-                <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
+                <Disc3 size={32} className="text-[#d51007] z-10" />
+                <div className="absolute inset-0 bg-[#d51007]/20 blur-2xl rounded-full"></div>
               </motion.div>
               <h1 className="font-headline-lg text-headline-lg mb-3 text-on-surface leading-tight">Your Music Taste Has a Personality.</h1>
               <p className="font-body-md text-base text-on-surface-variant/80 max-w-[280px] mx-auto">
-                Connect Spotify to unlock your listening archetype and musical DNA.
+                Connect your Last.fm account to unlock your listening archetype and musical DNA.
               </p>
             </div>
 
-            <div className="space-y-6">
+            <form onSubmit={handleLastfmSubmit} className="space-y-6">
+              {error && (
+                <div className="bg-error/10 border border-error/20 rounded-xl p-4 flex items-center gap-2 text-error">
+                  <AlertTriangle size={16} />
+                  <span className="text-xs font-bold">{error}</span>
+                </div>
+              )}
+
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-on-surface-variant/50" />
+                </div>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Last.fm Username"
+                  className="w-full bg-surface-container/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all font-body-lg"
+                  required
+                />
+              </div>
+
               <Button 
-                onClick={handleSpotifyLogin}
-                className="w-full bg-[#1DB954] text-white font-headline-md py-5 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group relative overflow-hidden shadow-[0_0_20px_rgba(29,185,84,0.3)]"
+                type="submit"
+                disabled={loading || !username.trim()}
+                className="w-full bg-[#d51007] text-white font-headline-md py-5 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group relative overflow-hidden shadow-[0_0_20px_rgba(213,16,7,0.3)] disabled:opacity-50 disabled:hover:scale-100"
               >
-                <Disc3 size={24} className="fill-white" />
-                <span className="font-bold tracking-tight">CONTINUE WITH SPOTIFY</span>
+                <span className="font-bold tracking-tight">CONTINUE WITH LAST.FM</span>
                 <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
               </Button>
 
@@ -78,10 +112,10 @@ export default function LoginPage() {
                   <span className="text-[9px] font-label-caps font-bold uppercase tracking-wider">Mood Analysis</span>
                 </div>
               </div>
-            </div>
+            </form>
 
             <p className="mt-10 text-center text-[10px] font-label-caps text-on-surface-variant/40 leading-relaxed">
-              By continuing, you authorize EchoDNA to analyze your listening history. We never store personal identifiers.
+              By continuing, you authorize EchoDNA to fetch your public Last.fm listening history. We never store personal identifiers.
             </p>
           </GlassCard>
 
@@ -106,7 +140,7 @@ export default function LoginPage() {
             key={i} 
             animate={{ height: [`${Math.random() * 40 + 20}%`, `${Math.random() * 80 + 20}%`, `${Math.random() * 40 + 20}%`] }}
             transition={{ duration: 1.5 + Math.random(), repeat: Infinity, ease: "easeInOut" }}
-            className={`w-1 rounded-t-full ${i % 3 === 0 ? 'bg-primary' : i % 2 === 0 ? 'bg-secondary' : 'bg-tertiary'}`}
+            className={`w-1 rounded-t-full ${i % 3 === 0 ? 'bg-[#d51007]' : i % 2 === 0 ? 'bg-secondary' : 'bg-tertiary'}`}
           />
         ))}
       </div>

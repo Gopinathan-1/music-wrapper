@@ -2,13 +2,20 @@
 
 import Link from "next/link";
 import { User, Home, LayoutGrid, Sparkles, Share, LogOut } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
+import { useAnalysis } from "@/hooks/useAnalysis";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const TopAppBar = () => {
-  const { data: session } = useSession();
+  const { username, resetAnalysis } = useAnalysis();
   const [showDropdown, setShowDropdown] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    resetAnalysis();
+    router.push("/");
+  };
 
   return (
     <header className="bg-surface/10 dark:bg-surface/10 backdrop-blur-xl border-b border-white/10 docked full-width top-0 sticky z-50 flex justify-between items-center px-container-margin py-4 w-full">
@@ -27,20 +34,14 @@ export const TopAppBar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-4 relative">
-        {session ? (
+        {username ? (
           <div className="relative">
             <button 
               onClick={() => setShowDropdown(!showDropdown)}
               className="flex items-center gap-2 group"
             >
-              <div className="w-10 h-10 rounded-full border-2 border-primary/30 overflow-hidden group-hover:border-primary transition-all">
-                {session.user?.image ? (
-                  <img src={session.user.image} alt="User" className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full bg-primary/20 flex items-center justify-center">
-                    <User size={20} className="text-primary" />
-                  </div>
-                )}
+              <div className="w-10 h-10 rounded-full border-2 border-primary/30 overflow-hidden group-hover:border-primary transition-all bg-primary/20 flex items-center justify-center">
+                <span className="text-primary font-bold uppercase">{username.charAt(0)}</span>
               </div>
             </button>
             
@@ -53,15 +54,15 @@ export const TopAppBar = () => {
                   className="absolute right-0 mt-4 w-48 rounded-2xl bg-surface-container-high border border-white/10 shadow-2xl p-2 z-[60]"
                 >
                   <div className="px-4 py-3 border-b border-white/5 mb-2">
-                    <p className="text-xs font-bold text-white truncate">{session.user?.name}</p>
-                    <p className="text-[10px] text-on-surface-variant truncate">{session.user?.email}</p>
+                    <p className="text-xs font-bold text-white truncate">@{username}</p>
+                    <p className="text-[10px] text-on-surface-variant truncate">Last.fm User</p>
                   </div>
                   <button 
-                    onClick={() => signOut()}
+                    onClick={handleLogout}
                     className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-error transition-colors"
                   >
                     <LogOut size={16} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Log Out</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Change User</span>
                   </button>
                 </motion.div>
               )}

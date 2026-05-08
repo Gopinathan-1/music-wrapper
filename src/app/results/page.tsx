@@ -30,8 +30,8 @@ export default function ResultsPage() {
     );
   }
 
-  const topGenres = Object.entries(results.genres);
-  const mood = results.mood;
+  const topGenres = results.genreDNA;
+  const mood = results.moodSpectrum;
 
   return (
     <>
@@ -85,13 +85,13 @@ export default function ResultsPage() {
           <div className="relative w-64 h-64 mb-10">
             <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
               <circle className="text-white/5" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" strokeWidth="8"></circle>
-              {topGenres.slice(0, 3).map(([genre, percentage], i) => {
+              {topGenres.slice(0, 3).map((genreData, i) => {
                 const colors = ["text-primary-container", "text-secondary-container/80", "text-tertiary-container/60"];
                 const dashArray = 251.2;
-                const dashOffset = dashArray - (dashArray * percentage) / 100;
+                const dashOffset = dashArray - (dashArray * genreData.percentage) / 100;
                 return (
                   <circle 
-                    key={genre}
+                    key={genreData.name}
                     className={`${colors[i]} transition-all duration-1000`}
                     cx="50" cy="50" fill="transparent" r="40" 
                     stroke="currentColor" 
@@ -103,21 +103,21 @@ export default function ResultsPage() {
               })}
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-[36px] font-bold text-white font-display-xl">{topGenres[0]?.[1]}%</span>
-              <span className="text-[10px] font-label-caps text-on-surface-variant uppercase">{topGenres[0]?.[0]}</span>
+              <span className="text-[36px] font-bold text-white font-display-xl">{topGenres[0]?.percentage}%</span>
+              <span className="text-[10px] font-label-caps text-on-surface-variant uppercase">{topGenres[0]?.name}</span>
             </div>
           </div>
           
           <div className="w-full space-y-4">
-            {topGenres.slice(0, 3).map(([genre, percentage], i) => {
+            {topGenres.slice(0, 3).map((genreData, i) => {
               const dots = ["bg-primary-container", "bg-secondary-container", "bg-tertiary-container"];
               return (
-                <div key={genre} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
+                <div key={genreData.name} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${dots[i]}`}></div>
-                    <span className="font-body-md text-on-surface capitalize">{genre}</span>
+                    <span className="font-body-md text-on-surface capitalize">{genreData.name.toLowerCase()}</span>
                   </div>
-                  <span className="font-headline-md text-white">{percentage}%</span>
+                  <span className="font-headline-md text-white">{genreData.percentage}%</span>
                 </div>
               );
             })}

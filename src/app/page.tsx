@@ -7,12 +7,12 @@ import { GlassCard } from "@/components/ui/echodna/GlassCard";
 import { DNAChip } from "@/components/ui/echodna/DNAChip";
 import { WaveformVisualizer } from "@/components/ui/echodna/WaveformVisualizer";
 import { Brain, BarChart, Microscope } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { useAnalysis } from "@/hooks/useAnalysis";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { username } = useAnalysis();
 
-  const ctaLink = session ? "/analyzing" : "/login";
+  const ctaLink = username ? "/analyzing" : "/login";
 
   return (
     <>

@@ -4,10 +4,6 @@ import SpotifyProvider from "next-auth/providers/spotify";
 const scope = [
   "user-read-email",
   "user-read-private",
-  "user-top-read",
-  "user-read-recently-played",
-  "playlist-read-private",
-  "user-library-read",
 ].join(" ");
 
 export const authOptions: NextAuthOptions = {
