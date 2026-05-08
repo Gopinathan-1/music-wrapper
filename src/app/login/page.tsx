@@ -1,28 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { GlassCard } from "@/components/ui/echodna/GlassCard";
 import { Button } from "@/components/ui/echodna/Button";
-import { Disc3, Sparkles, ShieldCheck, ArrowLeft, Headphones, AlertTriangle, User } from "lucide-react";
+import { Disc3, Sparkles, ShieldCheck, ArrowLeft, Headphones, User } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useAnalysis } from "@/hooks/useAnalysis";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
-  const { startAnalysis, loading, error } = useAnalysis();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleLastfmSubmit = async (e: React.FormEvent) => {
+  // Check if already logged in
+  useEffect(() => {
+    if (document.cookie.includes("lastfm_username=")) {
+      router.push("/dashboard");
+    }
+  }, [router]);
+
+  const handleLastfmSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim()) return;
     
-    // Start the analysis in the background
-    startAnalysis(username.trim());
+    setLoading(true);
     
-    // Redirect to the analyzing loading screen
-    router.push("/analyzing");
+    // Set cookie for 1 year
+    document.cookie = `lastfm_username=${username.trim()}; path=/; max-age=31536000`;
+    
+    router.push("/dashboard");
   };
 
   return (
@@ -72,13 +79,6 @@ export default function LoginPage() {
             </div>
 
             <form onSubmit={handleLastfmSubmit} className="space-y-6">
-              {error && (
-                <div className="bg-error/10 border border-error/20 rounded-xl p-4 flex items-center gap-2 text-error">
-                  <AlertTriangle size={16} />
-                  <span className="text-xs font-bold">{error}</span>
-                </div>
-              )}
-
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <User className="h-5 w-5 text-on-surface-variant/50" />
@@ -98,7 +98,9 @@ export default function LoginPage() {
                 disabled={loading || !username.trim()}
                 className="w-full bg-[#d51007] text-white font-headline-md py-5 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group relative overflow-hidden shadow-[0_0_20px_rgba(213,16,7,0.3)] disabled:opacity-50 disabled:hover:scale-100"
               >
-                <span className="font-bold tracking-tight">CONTINUE WITH LAST.FM</span>
+                <span className="font-bold tracking-tight">
+                  {loading ? "CONNECTING..." : "CONTINUE WITH LAST.FM"}
+                </span>
                 <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
               </Button>
 

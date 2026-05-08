@@ -2,18 +2,27 @@
 
 import Link from "next/link";
 import { User, Home, LayoutGrid, Sparkles, Share, LogOut } from "lucide-react";
-import { useAnalysis } from "@/hooks/useAnalysis";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export const TopAppBar = () => {
-  const { username, resetAnalysis } = useAnalysis();
+  const [username, setUsername] = useState<string | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const router = useRouter();
 
+  useEffect(() => {
+    const cookies = document.cookie.split(';');
+    const userCookie = cookies.find(c => c.trim().startsWith('lastfm_username='));
+    if (userCookie) {
+      setUsername(userCookie.split('=')[1]);
+    }
+  }, []);
+
   const handleLogout = () => {
-    resetAnalysis();
+    document.cookie = "lastfm_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setUsername(null);
+    setShowDropdown(false);
     router.push("/");
   };
 
@@ -26,7 +35,7 @@ export const TopAppBar = () => {
         <Link href="/" className="font-headline-md text-headline-md text-primary font-bold hover:text-secondary-fixed transition-colors">
           Home
         </Link>
-        <Link href="/results" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
+        <Link href="/dashboard" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
           Dashboard
         </Link>
         <Link href="/export" className="font-headline-md text-headline-md text-on-surface-variant hover:text-secondary-fixed transition-colors">
@@ -62,7 +71,7 @@ export const TopAppBar = () => {
                     className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 text-error transition-colors"
                   >
                     <LogOut size={16} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Change User</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Log Out</span>
                   </button>
                 </motion.div>
               )}

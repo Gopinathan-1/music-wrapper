@@ -7,12 +7,16 @@ import { GlassCard } from "@/components/ui/echodna/GlassCard";
 import { DNAChip } from "@/components/ui/echodna/DNAChip";
 import { WaveformVisualizer } from "@/components/ui/echodna/WaveformVisualizer";
 import { Brain, BarChart, Microscope } from "lucide-react";
-import { useAnalysis } from "@/hooks/useAnalysis";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  const { username } = useAnalysis();
+  const [ctaLink, setCtaLink] = useState("/login");
 
-  const ctaLink = username ? "/analyzing" : "/login";
+  useEffect(() => {
+    if (document.cookie.includes("lastfm_username=")) {
+      setCtaLink("/dashboard");
+    }
+  }, []);
 
   return (
     <>
