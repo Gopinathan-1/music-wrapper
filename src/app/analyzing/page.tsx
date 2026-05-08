@@ -5,15 +5,25 @@ import { useRouter } from "next/navigation";
 import { TopAppBar, BottomNavBar, Footer } from "@/components/ui/echodna/Navigation";
 import { CheckCircle2, Circle } from "lucide-react";
 
+import { useAnalysis } from "@/hooks/useAnalysis";
+
 export default function AnalyzingPage() {
   const router = useRouter();
+  const { loading, results, error } = useAnalysis();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.push("/results");
-    }, 4000);
-    return () => clearTimeout(timer);
-  }, [router]);
+    if (!loading && results) {
+      // Small delay to let the animation breathe
+      const timer = setTimeout(() => {
+        router.push("/results");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, results, router]);
+
+  if (error) {
+    // Handle error UI
+  }
 
   return (
     <>

@@ -37,7 +37,7 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
         const targetElement = document.querySelector(anchor.hash);
         if (targetElement) {
           e.preventDefault();
-          lenis.scrollTo(targetElement, {
+          lenis.scrollTo(targetElement as HTMLElement, {
             offset: -80, // Offset for sticky header
             duration: 1.5,
           });

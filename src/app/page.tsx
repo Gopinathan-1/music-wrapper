@@ -1,19 +1,25 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
 import { TopAppBar, BottomNavBar, Footer } from "@/components/ui/echodna/Navigation";
 import { Button } from "@/components/ui/echodna/Button";
 import { GlassCard } from "@/components/ui/echodna/GlassCard";
 import { DNAChip } from "@/components/ui/echodna/DNAChip";
 import { WaveformVisualizer } from "@/components/ui/echodna/WaveformVisualizer";
 import { Brain, BarChart, Microscope } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
+
+  const ctaLink = session ? "/analyzing" : "/login";
+
   return (
     <>
       {/* Aurora Background Blobs */}
       <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary aurora-blur"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-tertiary aurora-blur"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary aurora-blur opacity-20"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-tertiary aurora-blur opacity-20"></div>
       </div>
 
       <TopAppBar />
@@ -29,9 +35,6 @@ export default function Home() {
             <div className="w-48 h-48 rounded-xl bg-surface-variant transform -rotate-12 translate-y-12 border border-white/10 relative overflow-hidden">
               <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfYAI97Wr_kVnj5g10X-zk_PGhrmkt8nCnvapWwkfCBaz3WiHO6xVsGh99SzucoVeMbSztIxoYA7R8xrifvolYI2EEfOplvHJdruYB5rf5dPz9L_w0L0gNmPQALPa4GihnnRHs5tnzp61InI4qr3aBsLl3qvR0_TyuG7MTfVJrMJ3Tla3_A86-X1YkSfbBSqt1q86g1Lft8cLN6_zgjpc_jQrUzfGsOJj45HioQffcFUpDdRRB2nUy0KxqUzuGydutTiIXRbm0rdU" alt="" className="w-full h-full object-cover rounded-xl" />
             </div>
-            <div className="w-36 h-36 rounded-xl bg-surface-variant transform rotate-3 -translate-x-20 border border-white/10 relative overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnqD6mVCvaNQNE50GybvTYzfmIGm1QimZ-WYW4lZef2E2bL8Y9fymzMQppRjDkgIsvQlBi1ZIA4OUVw-E8MlCBYtA6d2Dx_biHiu4S6eqsH4NfPvR8z7J1WJOSa2FaMq34FK7cyBS_LP-0m-b4LJBTD658E2x1XThoMf0t7NIHr9aBOF7W1y7TjwKKo81YMySWQO9wZzz5_cKZ3xtqg74vqL5URPpEVBJRdUWirdqM6zG_CUnmXRzJfk4tS7iJltTgixKnuvjN5AQ" alt="" className="w-full h-full object-cover rounded-xl" />
-            </div>
           </div>
 
           <h1 className="font-display-xl text-display-xl max-w-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-tertiary">
@@ -45,7 +48,7 @@ export default function Home() {
             <WaveformVisualizer />
           </div>
 
-          <Link href="/login">
+          <Link href={ctaLink}>
             <Button variant="primary">ANALYZE MY SPOTIFY</Button>
           </Link>
         </section>
@@ -125,27 +128,9 @@ export default function Home() {
                     <div className="h-full bg-primary w-[82%] rounded-full shadow-[0_0_10px_rgba(83,224,118,0.5)]"></div>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between font-label-caps text-label-caps">
-                    <span>DARK POP</span>
-                    <span className="text-tertiary">64%</span>
-                  </div>
-                  <div className="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
-                    <div className="h-full bg-tertiary w-[64%] rounded-full shadow-[0_0_10px_rgba(236,178,255,0.5)]"></div>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between font-label-caps text-label-caps">
-                    <span>AMBIENT TECHNO</span>
-                    <span className="text-secondary-fixed">45%</span>
-                  </div>
-                  <div className="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
-                    <div className="h-full bg-secondary-fixed w-[45%] rounded-full shadow-[0_0_10px_rgba(125,244,255,0.5)]"></div>
-                  </div>
-                </div>
               </div>
               <div className="mt-12 p-6 rounded-2xl bg-primary/5 border border-primary/10">
-                <p className="font-body-md text-on-surface-variant italic">"Your DNA profile indicates a high affinity for rhythmic complexity and minor-key emotional resonance."</p>
+                <p className="font-body-md text-on-surface-variant italic">"We analyze your real-time listening history to map your sonic fingerprints."</p>
               </div>
             </GlassCard>
           </div>
@@ -155,20 +140,6 @@ export default function Home() {
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-8">
               We parse millions of data points—from frequency spectrums to lyrical sentiment—to map the neural pathways of your musical identity.
             </p>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Brain size={20} className="text-primary" />
-                </div>
-                <span className="font-body-md font-semibold">Cognitive Listening Patterns</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <BarChart size={20} className="text-primary" />
-                </div>
-                <span className="font-body-md font-semibold">Real-time Spectral Analysis</span>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -182,12 +153,11 @@ export default function Home() {
                 Securely connect your Spotify account to generate your unique musical identity card.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/login">
+                <Link href={ctaLink}>
                   <Button variant="primary">ANALYZE NOW</Button>
                 </Link>
                 <Button variant="secondary">LEARN MORE</Button>
               </div>
-              <p className="mt-8 text-outline text-xs font-body-md">We don't store your personal data. Only your vibes.</p>
             </div>
           </GlassCard>
         </section>

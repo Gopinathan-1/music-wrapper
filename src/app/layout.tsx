@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/ui/echodna/SmoothScroll";
+import { Providers } from "@/components/Providers";
 
 const satoshi = localFont({
   src: "./fonts/Satoshi-Variable.woff2",
@@ -16,8 +17,8 @@ const clashDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "EchoDNA | Your Spotify Taste Has a Personality",
-  description: "Discover your listening archetype, emotional spectrum, and musical alter ego.",
+  title: "EchoDNA | Your Sonic Identity",
+  description: "Discover your musical personality through advanced Spotify data analysis.",
 };
 
 export default function RootLayout({
@@ -26,11 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${satoshi.variable} ${clashDisplay.variable} antialiased`}>
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+    <html lang="en">
+      <body className={`${satoshi.variable} ${clashDisplay.variable} font-body bg-background text-on-surface antialiased`}>
+        <Providers>
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </Providers>
       </body>
     </html>
   );
