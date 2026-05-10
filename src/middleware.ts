@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export default function proxy(request: NextRequest) {
-  const username = request.cookies.get("lastfm_username")?.value;
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get("supabase_user_logged_in")?.value;
+  console.log("Middleware checking cookies on:", request.url);
+  console.log("All cookies:", request.cookies.getAll());
+  console.log("Found token:", token ? "YES" : "NO");
 
-  if (!username) {
+  if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Bell } from "lucide-react";
+import { Bell, LogOut } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useDashboardStore, TimeRange } from "@/store/useDashboardStore";
@@ -25,14 +25,61 @@ const timeRanges: TimeRange[] = ["Last 4 Weeks", "Last 6 Months", "All Time"];
 export function Topbar() {
   const pathname = usePathname();
   const { timeRange: activeTimeRange, setTimeRange } = useDashboardStore();
-  const [username, setUsername] = useState("Alex Johnson");
+  const [username, setUsername] = useState("Loading...");
+  const [subtext, setSubtext] = useState("User");
+  const [avatarUrl, setAvatarUrl] = useState(`https://api.dicebear.com/7.x/avataaars/svg?seed=Loading`);
 
   useEffect(() => {
-    const cookies = document.cookie.split(';');
-    const userCookie = cookies.find(c => c.trim().startsWith('lastfm_username='));
-    if (userCookie) {
-      setUsername(userCookie.split('=')[1]);
-    }
+    const fetchUserData = async () => {
+      // 1. Fetch Supabase User
+      const { supabase } = await import('@/lib/supabase');
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      let currentName = "User";
+      if (user?.email) {
+        currentName = user.email.split('@')[0];
+        setUsername(currentName);
+        setAvatarUrl(`https://api.dicebear.com/7.x/avataaars/svg?seed=${currentName}`);
+      }
+
+      // 2. Override with Spotify Profile if connected
+      const cookies = document.cookie.split(';');
+      const spotifyCookie = cookies.find(c => c.trim().startsWith('spotify_access_token='));
+      const refreshTokenCookie = cookies.find(c => c.trim().startsWith('spotify_refresh_token='));
+      
+      if (refreshTokenCookie && user) {
+        const refreshToken = refreshTokenCookie.split('=')[1];
+        if (user.user_metadata?.spotify_refresh_token !== refreshToken) {
+          // Save the refresh token persistently so they don't have to login again
+          await supabase.auth.updateUser({
+            data: { spotify_refresh_token: refreshToken }
+          });
+        }
+      }
+
+      if (spotifyCookie) {
+        const token = spotifyCookie.split('=')[1];
+        try {
+          const res = await fetch('https://api.spotify.com/v1/me', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.display_name) {
+              setUsername(data.display_name);
+            }
+            if (data.images && data.images.length > 0) {
+              setAvatarUrl(data.images[0].url);
+            }
+            setSubtext(data.product === "premium" ? "Spotify Premium" : "Spotify Free");
+          }
+        } catch (e) {
+          console.error("Failed to fetch Spotify profile", e);
+        }
+      }
+    };
+
+    fetchUserData();
   }, []);
 
   return (
@@ -96,8 +143,8 @@ export function Topbar() {
         <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4">
           <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-500 p-[2px]">
             <img
-              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`}
-              alt="User"
+              src={avatarUrl}
+              alt={username}
               className="h-full w-full rounded-full bg-black object-cover"
             />
           </div>
@@ -105,16 +152,25 @@ export function Topbar() {
             <span className="text-xs font-semibold leading-none text-white">
               {username}
             </span>
-            <span className="text-[10px] text-white/40">Last.fm User</span>
+            <span className="text-[10px] text-white/40">{subtext}</span>
           </div>
         </div>
 
         {/* Notifications & Settings */}
         <div className="flex items-center gap-3">
-          <button className="rounded-full border border-white/10 bg-white/5 p-2 text-white/40 transition-colors hover:text-white">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.5 14.5L14.5 21.5M21.5 14.5L14.5 7.5M21.5 14.5H2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+          <button 
+            onClick={async () => {
+              const { supabase } = await import('@/lib/supabase');
+              await supabase.auth.signOut();
+              document.cookie = "supabase_user_logged_in=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              document.cookie = "spotify_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              document.cookie = "spotify_refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.href = "/login";
+            }}
+            title="Log out"
+            className="rounded-full border border-white/10 bg-white/5 p-2 text-white/40 transition-colors hover:text-error hover:bg-error/10"
+          >
+            <LogOut className="h-4 w-4" />
           </button>
           <button className="relative rounded-full border border-white/10 bg-white/5 p-2 text-white/40 transition-colors hover:text-white">
             <Bell className="h-4 w-4" />

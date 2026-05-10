@@ -1,9 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useDashboardStore } from "@/store/useDashboardStore";
-import { fetchDashboardData } from "@/lib/mock/api";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,28 +17,13 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-export function StatsGrid() {
-  const timeRange = useDashboardStore((state) => state.timeRange);
-  const [stats, setStats] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+interface StatsGridProps {
+  stats: any[];
+  isLoading?: boolean;
+}
 
-  useEffect(() => {
-    let mounted = true;
-    setLoading(true);
-
-    fetchDashboardData(timeRange).then((data) => {
-      if (mounted) {
-        setStats(data.stats);
-        setLoading(false);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, [timeRange]);
-
-  if (loading || stats.length === 0) {
+export function StatsGrid({ stats, isLoading }: StatsGridProps) {
+  if (isLoading || !stats || stats.length === 0) {
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
@@ -60,15 +42,15 @@ export function StatsGrid() {
     >
       {stats.map((stat, index) => (
         <motion.div
-          key={`${timeRange}-${index}`}
+          key={index}
           variants={itemVariants}
-          className={`group relative flex flex-col justify-between overflow-hidden rounded-xl border bg-black/40 p-5 backdrop-blur-md transition-all hover:bg-black/60 ${stat.borderColor}`}
+          className={`group relative flex flex-col justify-between overflow-hidden rounded-xl border bg-black/40 p-5 backdrop-blur-md transition-all hover:bg-black/60 ${stat.borderColor || 'border-white/10'}`}
           style={{
             boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.02)`,
           }}
           whileHover={{
             y: -2,
-            boxShadow: `0 10px 30px -10px ${stat.glowColor}, inset 0 0 0 1px rgba(255,255,255,0.05)`,
+            boxShadow: stat.glowColor ? `0 10px 30px -10px ${stat.glowColor}, inset 0 0 0 1px rgba(255,255,255,0.05)` : undefined,
           }}
         >
           <h3 className="text-[10px] font-bold uppercase tracking-widest text-white/50">
@@ -78,7 +60,7 @@ export function StatsGrid() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             key={stat.value}
-            className="mt-2 mb-1 text-3xl font-black tracking-tighter text-white"
+            className="mt-2 mb-1 text-3xl font-black tracking-tighter text-white truncate"
           >
             {stat.value}
           </motion.div>

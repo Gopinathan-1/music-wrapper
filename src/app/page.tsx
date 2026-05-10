@@ -13,7 +13,7 @@ export default function Home() {
   const [ctaLink, setCtaLink] = useState("/login");
 
   useEffect(() => {
-    if (document.cookie.includes("lastfm_username=")) {
+    if (document.cookie.includes("spotify_access_token=")) {
       setCtaLink("/dashboard");
     }
   }, []);

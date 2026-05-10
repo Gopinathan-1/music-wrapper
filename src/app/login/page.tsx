@@ -4,32 +4,98 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { GlassCard } from "@/components/ui/echodna/GlassCard";
 import { Button } from "@/components/ui/echodna/Button";
-import { Disc3, Sparkles, ShieldCheck, ArrowLeft, Headphones, User } from "lucide-react";
+import { ShieldCheck, ArrowLeft, Mail, Lock, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
 
   // Check if already logged in
   useEffect(() => {
-    if (document.cookie.includes("lastfm_username=")) {
+    if (document.cookie.includes("supabase_user_logged_in=true")) {
       router.push("/dashboard");
     }
   }, [router]);
 
-  const handleLastfmSubmit = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!username.trim()) return;
+    if (!email.trim() || !password.trim()) return;
     
     setLoading(true);
+    setErrorMsg("");
     
-    // Set cookie for 1 year
-    document.cookie = `lastfm_username=${username.trim()}; path=/; max-age=31536000`;
-    
-    router.push("/dashboard");
+    // Try to sign in first
+    let { data, error } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password: password.trim(),
+    });
+
+    console.log("Supabase login response:", { data, error });
+
+    // If invalid login credentials, maybe they need to sign up?
+    if (error && error.message.includes("Invalid login credentials")) {
+      setErrorMsg("Invalid credentials. If new, please click Sign Up.");
+      setLoading(false);
+      return;
+    } else if (error) {
+      // Special friendly message for unconfirmed emails
+      if (error.message.includes("Email not confirmed")) {
+        setErrorMsg("Please check your email to confirm your account first.");
+      } else {
+        setErrorMsg(error.message);
+      }
+      setLoading(false);
+      return;
+    }
+
+    if (data?.user || data?.session) {
+      document.cookie = `supabase_user_logged_in=true; path=/; max-age=31536000`;
+      router.push("/dashboard");
+    } else {
+      setErrorMsg("Unexpected login error. Please try again.");
+      setLoading(false);
+    }
+  };
+
+  const handleSignUp = async () => {
+    if (!email.trim() || !password.trim()) {
+      setErrorMsg("Please enter email and password to sign up.");
+      return;
+    }
+    setLoading(true);
+    setErrorMsg("");
+
+    const { data, error } = await supabase.auth.signUp({
+      email: email.trim(),
+      password: password.trim(),
+    });
+
+    if (error) {
+      setErrorMsg(error.message);
+      setLoading(false);
+      return;
+    }
+
+    // Supabase returns user but null session if email confirmation is required
+    if (data.user && data.session === null) {
+      setErrorMsg("Success! Please check your email inbox to confirm your account before logging in.");
+      setLoading(false);
+      return;
+    }
+
+    if (data?.user || data?.session) {
+      document.cookie = `supabase_user_logged_in=true; path=/; max-age=31536000`;
+      router.push("/dashboard");
+    } else {
+      setErrorMsg("Unexpected signup error. Please try again.");
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,62 +129,69 @@ export default function LoginPage() {
           <GlassCard className="w-full rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden border border-white/10 shadow-2xl">
             <div className="absolute inset-0 p-[1px] rounded-[2.5rem] bg-gradient-to-br from-primary/40 via-transparent to-tertiary-container/40 -z-10"></div>
             
-            <div className="text-center mb-10">
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-surface-container-high mb-6 relative"
-              >
-                <Disc3 size={32} className="text-[#d51007] z-10" />
-                <div className="absolute inset-0 bg-[#d51007]/20 blur-2xl rounded-full"></div>
-              </motion.div>
-              <h1 className="font-headline-lg text-headline-lg mb-3 text-on-surface leading-tight">Your Music Taste Has a Personality.</h1>
-              <p className="font-body-md text-base text-on-surface-variant/80 max-w-[280px] mx-auto">
-                Connect your Last.fm account to unlock your listening archetype and musical DNA.
+            <div className="text-center mb-8">
+              <h1 className="font-headline-lg text-headline-md mb-3 text-on-surface leading-tight">Welcome Back</h1>
+              <p className="font-body-md text-sm text-on-surface-variant/80 mx-auto">
+                Login with your email to access your dashboard.
               </p>
             </div>
 
-            <form onSubmit={handleLastfmSubmit} className="space-y-6">
+            <form onSubmit={handleLogin} className="space-y-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-on-surface-variant/50" />
+                  <Mail className="h-5 w-5 text-on-surface-variant/50" />
                 </div>
                 <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Last.fm Username"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email Address"
                   className="w-full bg-surface-container/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all font-body-lg"
                   required
                 />
               </div>
 
-              <Button 
-                type="submit"
-                disabled={loading || !username.trim()}
-                className="w-full bg-[#d51007] text-white font-headline-md py-5 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group relative overflow-hidden shadow-[0_0_20px_rgba(213,16,7,0.3)] disabled:opacity-50 disabled:hover:scale-100"
-              >
-                <span className="font-bold tracking-tight">
-                  {loading ? "CONNECTING..." : "CONTINUE WITH LAST.FM"}
-                </span>
-                <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
-              </Button>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-on-surface-variant/50" />
+                </div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full bg-surface-container/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all font-body-lg"
+                  required
+                />
+              </div>
 
-              <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
-                  <Sparkles size={12} className="text-primary" />
-                  <span className="text-[9px] font-label-caps font-bold uppercase tracking-wider">AI Archetypes</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
-                  <Headphones size={12} className="text-tertiary" />
-                  <span className="text-[9px] font-label-caps font-bold uppercase tracking-wider">Mood Analysis</span>
-                </div>
+              {errorMsg && (
+                <p className="text-error text-xs text-center font-medium pt-1">{errorMsg}</p>
+              )}
+
+              <div className="pt-2 space-y-3">
+                <Button 
+                  type="submit"
+                  disabled={loading || !email.trim() || !password.trim()}
+                  className="w-full bg-primary text-on-primary font-headline-md py-4 rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group relative overflow-hidden shadow-[0_0_20px_rgba(83,224,118,0.3)] disabled:opacity-50 disabled:hover:scale-100"
+                >
+                  <span className="font-bold tracking-tight">
+                    {loading ? "LOGGING IN..." : "LOG IN"}
+                  </span>
+                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
+                </Button>
+
+                <button 
+                  type="button"
+                  onClick={handleSignUp}
+                  disabled={loading || !email.trim() || !password.trim()}
+                  className="w-full bg-surface-container border border-white/10 text-white font-headline-md py-4 rounded-2xl hover:bg-white/5 active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50"
+                >
+                  <UserPlus size={16} />
+                  <span>Create Account</span>
+                </button>
               </div>
             </form>
-
-            <p className="mt-10 text-center text-[10px] font-label-caps text-on-surface-variant/40 leading-relaxed">
-              By continuing, you authorize EchoDNA to fetch your public Last.fm listening history. We never store personal identifiers.
-            </p>
           </GlassCard>
 
           <motion.div 
@@ -129,7 +202,7 @@ export default function LoginPage() {
           >
             <div className="flex items-center gap-2 text-on-surface-variant/40">
               <ShieldCheck size={18} />
-              <p className="font-label-caps text-[10px] uppercase tracking-[0.2em]">Verified Secure Connection</p>
+              <p className="font-label-caps text-[10px] uppercase tracking-[0.2em]">Secured by Supabase</p>
             </div>
           </motion.div>
         </div>

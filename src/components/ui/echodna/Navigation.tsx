@@ -13,14 +13,15 @@ export const TopAppBar = () => {
 
   useEffect(() => {
     const cookies = document.cookie.split(';');
-    const userCookie = cookies.find(c => c.trim().startsWith('lastfm_username='));
-    if (userCookie) {
-      setUsername(userCookie.split('=')[1]);
+    const tokenCookie = cookies.find(c => c.trim().startsWith('spotify_access_token='));
+    if (tokenCookie) {
+      setUsername("Spotify User");
     }
   }, []);
 
   const handleLogout = () => {
-    document.cookie = "lastfm_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "spotify_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "spotify_refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setUsername(null);
     setShowDropdown(false);
     router.push("/");
@@ -64,7 +65,7 @@ export const TopAppBar = () => {
                 >
                   <div className="px-4 py-3 border-b border-white/5 mb-2">
                     <p className="text-xs font-bold text-white truncate">@{username}</p>
-                    <p className="text-[10px] text-on-surface-variant truncate">Last.fm User</p>
+                    <p className="text-[10px] text-on-surface-variant truncate">Spotify User</p>
                   </div>
                   <button 
                     onClick={handleLogout}
